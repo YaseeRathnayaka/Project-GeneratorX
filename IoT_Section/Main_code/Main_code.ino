@@ -6,14 +6,12 @@
 #include <DHT.h>
 #include <HTTPClient.h>
 
-// ... Other includes and definitions
-
-#define WIFI_SSID "RNP 10"
-#define WIFI_PASSWORD "shashindu"
-#define API_KEY "AIzaSyAeiujYXemMaJFi4CIdR9YLLTMB50Oocn0"
+#define WIFI_SSID "upul"
+#define WIFI_PASSWORD "12345678"
+#define API_KEY "AIzaSyD9pFGVzVGgiLozwFDJeH81ktXbBiu-bAA"
 #define USER_EMAIL "yasiiirathnayaka@gmail.com"
 #define USER_PASSWORD "123456"
-#define DATABASE_URL "https://generatorx-aa683-default-rtdb.firebaseio.com/"
+#define DATABASE_URL "https://genx-data-logging-default-rtdb.asia-southeast1.firebasedatabase.app/"
 #define GOOGLE_SHEET_ID "1tdqNnkhz89KTbWQeozvdzIfCQVQPbVx197JhvzpeVzA"
 
 WiFiClientSecure client;
@@ -32,9 +30,9 @@ String parentPath;
 int timestamp;
 FirebaseJson json;
 
-const char* ntpServer = "pool.ntp.org";
+const char *ntpServer = "pool.ntp.org";
 
-#define DHT_PIN 21
+#define DHT_PIN 2
 DHT dht(DHT_PIN, DHT22);
 
 #define ACS712_PIN A0
@@ -82,7 +80,6 @@ void setup() {
   config.database_url = DATABASE_URL;
   Firebase.reconnectWiFi(true);
   fbdo.setResponseSize(4096);
-  // config.token_status_callback = tokenStatusCallback; // Commented out as it was not defined
   config.max_token_generation_retry = 5;
   Firebase.begin(&config, &auth);
   Serial.println("Getting User UID");
@@ -97,47 +94,56 @@ void setup() {
 }
 
 unsigned long sendDataPrevMillis = 0;
-unsigned long timerDelay = 10000;  // 10 minutes delay
+unsigned long timerDelay = 5000; // 5 seconds delay
 
 void loop() {
   if (Firebase.ready()) {
     timestamp = getTime();
     parentPath = databasePath + "/" + String(timestamp);
+
+    // Read DHT22 sensor data
     float temperature = dht.readTemperature();
     float humidity = dht.readHumidity();
-    float currentReading = readACS712();
 
-    Serial.println("Sensor Readings:");
-    Serial.print("Temperature: ");
-    Serial.print(temperature);
-    Serial.println(" °C");
-    Serial.print("Humidity: ");
-    Serial.print(humidity);
-    Serial.println(" %");
-    Serial.print("Current: ");
-    Serial.print(currentReading);
-    Serial.println(" A");
-    Serial.print("Timestamp: ");
-    Serial.println(timestamp);
+    // Check if the readings are valid
+    if (!isnan(temperature) && !isnan(humidity)) {
+      float currentReading = readACS712();
 
-    json.set(tempPath.c_str(), String(temperature));
-    json.set(humPath.c_str(), String(humidity));
-    json.set(currentPath.c_str(), String(currentReading));
-    json.set(timePath.c_str(), String(timestamp));
+      Serial.println("Sensor Readings:");
+      Serial.print("Temperature: ");
+      Serial.print(temperature);
+      Serial.println(" °C");
+      Serial.print("Humidity: ");
+      Serial.print(humidity);
+      Serial.println(" %");
+      Serial.print("Current: ");
+      Serial.print(currentReading);
+      Serial.println(" A");
+      Serial.print("Timestamp: ");
+      Serial.println(timestamp);
 
-    Serial.printf("Set JSON... %s\n", Firebase.RTDB.setJSON(&fbdo, parentPath.c_str(), &json) ? "ok" : fbdo.errorReason().c_str());
+      json.set(tempPath.c_str(), String(temperature));
+      json.set(humPath.c_str(), String(humidity));
+      json.set(currentPath.c_str(), String(currentReading));
+      json.set(timePath.c_str(), String(timestamp));
 
-    // Store data in Google Sheets every 10 minutes
-    if ((millis() - sendDataPrevMillis > timerDelay) || sendDataPrevMillis == 0) {
-      sendDataPrevMillis = millis();
+      Serial.printf("Set JSON... %s\n", Firebase.RTDB.setJSON(&fbdo, parentPath.c_str(), &json) ? "ok" : fbdo.errorReason().c_str());
 
-      // Send data to Google Sheets
-      sendToGoogleSheets(timestamp, temperature, humidity, currentReading);
+      // Store data in Google Sheets every 5 seconds
+      if ((millis() - sendDataPrevMillis > timerDelay) || sendDataPrevMillis == 0) {
+        sendDataPrevMillis = millis();
 
-      Serial.println("Data sent to Google Sheets");
+        // Send data to Google Sheets
+        sendToGoogleSheets(timestamp, temperature, humidity, currentReading);
+
+        Serial.println("Data sent to Google Sheets");
+      }
+    } else {
+      // Failed to read from the DHT22 sensor
+      Serial.println("Failed to read from DHT22 sensor");
     }
 
-    delay(10000);  // Delay for 10 seconds before sending the next set of data
+    delay(5000); // Delay for 5 seconds before sending the next set of data
   }
 }
 
@@ -157,7 +163,7 @@ void sendToGoogleSheets(int timestamp, float temperature, float humidity, float 
   url += String(currentReading);
 
   Serial.print("Sending data to Google Sheets... ");
-  int httpResponseCode = http.begin(url);  // Use begin() directly with the URL
+  int httpResponseCode = http.begin(url); // Use begin() directly with the URL
   if (httpResponseCode > 0) {
     Serial.println("Success");
   } else {

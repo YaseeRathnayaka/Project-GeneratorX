@@ -143,7 +143,7 @@ void loop() {
       Serial.println("Failed to read from DHT22 sensor");
     }
 
-    delay(1000); // Delay for 1 second before sending the next set of data
+    delay(3000); // Delay for 1 second before sending the next set of data
   }
 }
 

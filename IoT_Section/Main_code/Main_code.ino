@@ -6,7 +6,7 @@
 #include <DHT.h>
 #include <HTTPClient.h>
 
-#define WIFI_SSID "upul"
+#define WIFI_SSID "G5A"
 #define WIFI_PASSWORD "12345678"
 #define API_KEY "AIzaSyD9pFGVzVGgiLozwFDJeH81ktXbBiu-bAA"
 #define USER_EMAIL "yasiiirathnayaka@gmail.com"
@@ -94,7 +94,7 @@ void setup() {
 }
 
 unsigned long sendDataPrevMillis = 0;
-unsigned long timerDelay = 5000; // 5 seconds delay
+unsigned long timerDelay = 300000; // 5 minutes delay
 
 void loop() {
   if (Firebase.ready()) {
@@ -129,7 +129,7 @@ void loop() {
 
       Serial.printf("Set JSON... %s\n", Firebase.RTDB.setJSON(&fbdo, parentPath.c_str(), &json) ? "ok" : fbdo.errorReason().c_str());
 
-      // Store data in Google Sheets every 5 seconds
+      // Store data in Google Sheets every 5 minutes
       if ((millis() - sendDataPrevMillis > timerDelay) || sendDataPrevMillis == 0) {
         sendDataPrevMillis = millis();
 
@@ -143,27 +143,21 @@ void loop() {
       Serial.println("Failed to read from DHT22 sensor");
     }
 
-    delay(5000); // Delay for 5 seconds before sending the next set of data
+    delay(1000); // Delay for 1 second before sending the next set of data
   }
 }
 
 void sendToGoogleSheets(int timestamp, float temperature, float humidity, float currentReading) {
   HTTPClient http;
 
-  // Break down URL concatenation
-  String url = "https://script.google.com/macros/s/AKfycbz4uul3xXoS2r-TEwvCufq68l8ZCi8FvsSTcPBSEZNuLnnOyoj-DwR48H7o2NDOhmWR/exec";
-  url += GOOGLE_SHEET_ID;
-  url += "/exec?timestamp=";
-  url += String(timestamp);
-  url += "&temperature=";
-  url += String(temperature);
-  url += "&humidity=";
-  url += String(humidity);
-  url += "&current=";
-  url += String(currentReading);
+  String url = "https://script.google.com/macros/s/AKfycbyw7tYibBTvEa4aeajDxoBV7nv_L-uBcOpeYINdsqYsm3023L_GGKtU9gr6e9UINbmp/exec";
+  String payload = "timestamp=" + String(timestamp) +
+                   "&temperature=" + String(temperature) +
+                   "&humidity=" + String(humidity) +
+                   "&current=" + String(currentReading);
 
-  Serial.print("Sending data to Google Sheets... ");
-  int httpResponseCode = http.begin(url); // Use begin() directly with the URL
+  int httpResponseCode = http.POST(payload);
+
   if (httpResponseCode > 0) {
     Serial.println("Success");
   } else {

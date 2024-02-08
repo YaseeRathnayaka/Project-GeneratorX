@@ -6,8 +6,8 @@
 #include <DHT.h>
 #include <HTTPClient.h>
 
-#define WIFI_SSID "G5A"
-#define WIFI_PASSWORD "12345678"
+#define WIFI_SSID "Dialog 4G 870"
+#define WIFI_PASSWORD "Ba8e62F1"
 #define API_KEY "AIzaSyD9pFGVzVGgiLozwFDJeH81ktXbBiu-bAA"
 #define USER_EMAIL "yasiiirathnayaka@gmail.com"
 #define USER_PASSWORD "123456"

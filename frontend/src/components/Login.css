@@ -1,0 +1,85 @@
+.admin-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .header {
+    background-color: #008B8B;
+    color: #fff;
+    padding: 12px;
+    text-align: center;
+  }
+  
+  
+  
+  .container {
+      height: 100%;
+      min-height: 100vh;
+      width: 100%;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .innerBox {
+      min-width: 480px;
+      height: 605px;
+      width: fit-content;
+      background-color: #fff;
+      box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+      padding: 30px;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 35px;
+    }
+  
+    
+    
+    .footer button {
+      outline: none;
+      border: none;
+      background-color: #9900ff;
+      color: #fff;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 1rem;
+      padding: 10px 16px;
+      width: 100%;
+      transition: 100ms;
+      cursor: pointer;
+    }
+    
+    .footer button:disabled {
+      background-color: gray !important;
+    }
+    
+    .footer button:hover {
+      background-color: #aa2aff;
+    }
+    
+    .footer p {
+      font-weight: 700;
+      color: #000;
+    }
+    
+    .footer p span a {
+      font-weight: bold;
+      color: #9900ff;
+      letter-spacing: 1px;
+      font-size: 1rem;
+      text-decoration: none;
+    }
+    
+  
+  .login-image{
+    display: flex;
+    flexDirection: row;
+    alignItems: center;
+    justifyContent: center;
+    minHeight: 100vh;
+    height: 100px;
+    width: 500px;
+  }

@@ -6,8 +6,8 @@
 #include <DHT.h>
 #include <HTTPClient.h>
 
-#define WIFI_SSID "Dialog 4G 870"
-#define WIFI_PASSWORD "Ba8e62F1"
+#define WIFI_SSID "RNP 10"
+#define WIFI_PASSWORD "12345678"
 #define API_KEY "AIzaSyD9pFGVzVGgiLozwFDJeH81ktXbBiu-bAA"
 #define USER_EMAIL "yasiiirathnayaka@gmail.com"
 #define USER_PASSWORD "123456"
@@ -143,7 +143,7 @@ void loop() {
       Serial.println("Failed to read from DHT22 sensor");
     }
 
-    delay(3000); // Delay for 1 second before sending the next set of data
+    delay(1000); // Delay for 1 second before sending the next set of data
   }
 }
 

@@ -1,71 +1,50 @@
-
 body {
-    margin: 0;
-    padding: 0;
-    height: 100vh; /* Set the height of the body to 100% of the viewport height */
-    display: flex;
-    flex-direction: column; /* Use a flex container with a column layout */
-  }
-  
-  .header {
-   height: 35px;
-   background-color: #062B63;
-  }
-  
-  .footer {
-    height: 80px;
-    background-color: #062B63;
-    margin-top: auto; /* Push the footer to the bottom of the container */
-  }
-  
-  
-  .dashboard-container{
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
-  .footer-content {
-    letter-spacing: 20px;
-    color: white;
-    text-align: center;
+.header {
+  height: 35px;
+  background-color: #062B63;
+}
 
+.footer {
+  height: 80px;
+  background-color: #062B63;
+  margin-top: auto;
+}
 
-  }
-  .footer-bottom-text{
-    letter-spacing: normal;
-    text-align: center;
-    color: white;
+.footer-content {
+  letter-spacing: 20px;
+  color: white;
+  text-align: center;
+}
 
+.footer-bottom-text {
+  letter-spacing: normal;
+  text-align: center;
+  color: white;
+}
 
-  }
-  .logo{
-    width: 100px;
-  }
-  .box {
-    width: 200px;
-    height: 150px;
-    border: 1px solid #ccc;
-    padding: 20px;
-    margin: 10px;
-    text-align: center;
-    align-items: center;
-   
-    
-  }
-  .meters{
-    align-items: center;
-    align-self:center;
-    padding-top: 1%;
-    
-    
+.logo {
+  width: 100px;
+}
 
-  }
-  .Download-button {
-    size: 10% !important;
-    padding-top: 10px;
-    /* Add any other necessary styles */
-  }
-  
-  
-  
+.Download-button {
+  size: 10% !important;
+  padding-top: 10px;
+}
+
+.gauge1 {
+  display: flex;
+  align-items: center; /* Align the gauges vertically in the center */
+}
+
+/* Add more styling as needed for the gauges */
+.gauge2 {
+  display: flex;
+  align-items: center; /* Align the gauges vertically in the center */
+}

@@ -1,9 +1,10 @@
+// Dashboard.js
 import React, { useState, useEffect } from 'react';
 import { database, auth } from '../firebase';
 import './Dashboard.css';
 import img from '../assets/logo.png';
 import * as XLSX from 'xlsx';
-import Speedometer from 'react-d3-speedometer';
+import ApexChart from './ApexChart';
 
 const Dashboard = () => {
   const [sensorData, setSensorData] = useState({
@@ -12,7 +13,7 @@ const Dashboard = () => {
     current: 0,
     timestamp: 0,
   });
-
+  const [tempratureLabel,setTempratureLabel] = useState('Temprature')
   const [switchStatus, setSwitchStatus] = useState(false);
 
   useEffect(() => {
@@ -35,6 +36,7 @@ const Dashboard = () => {
 
       dataRef.on('value', snapshot => {
         const latestEntry = Object.values(snapshot.val()).pop();
+        console.log('Received Data:', latestEntry); // Log received data
         setSensorData(latestEntry);
       });
     } catch (error) {
@@ -137,43 +139,21 @@ const Dashboard = () => {
     <div className='dashboard-container'>
       <header className='header'></header>
       <img src={img} className='logo' alt='Image Description' />
-      <div className='gauge0'>
-        <h2>Temperature</h2>
-        <Speedometer
-          value={sensorData.temperature}
-          minValue={0}
-          maxValue={100}
-          needleColor='red'
-          startColor='blue'
-          endColor='yellow'
-          height={200}
-        />
+      <div className='meter-set'>
+       
+        <div className='gauge'>
+            <ApexChart value={sensorData.temperature} label={tempratureLabel}/>
+        </div>
+        <div className='gauge'>
+            <ApexChart value={sensorData.humidity} />
+        </div>
+        <div className='gauge'>
+            <ApexChart value={sensorData.current} />
+        </div>
+        <button onClick={handleDownload} className='download-button'>
+          Report
+        </button>
       </div>
-      <div className='gauge1'>
-        <h2>Humidity</h2>
-        <Speedometer
-          value={sensorData.humidity}
-          minValue={0}
-          maxValue={100}
-          needleColor='green'
-          startColor='lightblue'
-          endColor='lightgreen'
-          height={200}
-        />
-      </div>
-      <div className='gauge2'>
-        <h2>Current</h2>
-        <Speedometer
-          value={sensorData.current}
-          minValue={0}
-          maxValue={100}
-          needleColor='orange'
-          startColor='lightyellow'
-          endColor='lightcoral'
-          height={200}
-        />
-      </div>
-      <button onClick={handleDownload}>Download Sensor Readings</button>
       <div>
         <button onClick={handleSwitchToggle}>
           {switchStatus ? 'Switch ON' : 'Switch OFF'}

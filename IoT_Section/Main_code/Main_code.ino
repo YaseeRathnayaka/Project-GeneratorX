@@ -6,12 +6,12 @@
 #include <DHT.h>
 #include <HTTPClient.h>
 
-#define WIFI_SSID "RNP 10"
+#define WIFI_SSID "G5A"
 #define WIFI_PASSWORD "12345678"
-#define API_KEY "AIzaSyD9pFGVzVGgiLozwFDJeH81ktXbBiu-bAA"
+#define API_KEY "AIzaSyAWfhB2BnxeTKNjOBnXxQ6KupNcWvq5wUE"
 #define USER_EMAIL "yasiiirathnayaka@gmail.com"
 #define USER_PASSWORD "123456"
-#define DATABASE_URL "https://genx-data-logging-default-rtdb.asia-southeast1.firebasedatabase.app/"
+#define DATABASE_URL "https://genx-119ab-default-rtdb.asia-southeast1.firebasedatabase.app/"
 #define GOOGLE_SHEET_ID "1tdqNnkhz89KTbWQeozvdzIfCQVQPbVx197JhvzpeVzA"
 
 WiFiClientSecure client;

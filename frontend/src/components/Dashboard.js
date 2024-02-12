@@ -5,6 +5,7 @@ import './Dashboard.css';
 import img from '../assets/logo.png';
 import * as XLSX from 'xlsx';
 import ApexChart from './ApexChart';
+import { useNavigate } from 'react-router';
 
 const Dashboard = () => {
   const [sensorData, setSensorData] = useState({
@@ -52,24 +53,13 @@ const Dashboard = () => {
         const status = snapshot.val();
         setSwitchStatus(status);
 
-        // Update emergency status based on switch status
-        updateEmergencyStatus(uid, status);
+        
       });
     } catch (error) {
       console.error('Error setting up switch status listener:', error);
     }
   };
 
-  const updateEmergencyStatus = (uid, switchStatus) => {
-    try {
-      const emergencyRef = database.ref(`/UsersData/${uid}/emergency`);
-
-      // Update emergency status based on switch status
-      emergencyRef.set(switchStatus);
-    } catch (error) {
-      console.error('Error updating emergency status:', error);
-    }
-  };
 
   const handleDownload = async () => {
     try {
@@ -122,9 +112,11 @@ const Dashboard = () => {
   const handleSwitchToggle = () => {
     // Toggle the switch status and update in Firebase
     const newSwitchStatus = !switchStatus;
+    console.log('New Switch Status:', newSwitchStatus);
     setSwitchStatus(newSwitchStatus);
     updateSwitchStatus(auth.currentUser.uid, newSwitchStatus);
   };
+  
 
   const updateSwitchStatus = (uid, switchStatus) => {
     try {
@@ -134,6 +126,10 @@ const Dashboard = () => {
       console.error('Error updating switch status:', error);
     }
   };
+  const navigate = useNavigate();
+  const NavigateToService = ()=>{
+    navigate('/service');
+  }
 
   return (
     <div className='dashboard-container'>
@@ -142,23 +138,32 @@ const Dashboard = () => {
       <div className='meter-set'>
        
         <div className='gauge'>
-            <ApexChart value={sensorData.temperature} label={tempratureLabel}/>
+            <ApexChart value={sensorData.temperature} label={"Temprature C"}/>
         </div>
         <div className='gauge'>
-            <ApexChart value={sensorData.humidity} />
+            <ApexChart value={sensorData.humidity} label={"Voltage V"} />
         </div>
         <div className='gauge'>
-            <ApexChart value={sensorData.current} />
+            <ApexChart value={sensorData.current} label={"Current A"}/>
         </div>
-        <button onClick={handleDownload} className='download-button'>
-          Report
-        </button>
+        <div className='gauge'>
+            <ApexChart value={sensorData.fuellevel} label={"Fuel-Level"}/>
+        </div>
+        <div className='gauge'>
+            <ApexChart value={sensorData.fuellevel} label={"Coolant-Level"}/>
+        </div>
       </div>
       <div>
+      <button onClick={handleDownload} className='download-button'>
+          Report
+        </button>
         <button onClick={handleSwitchToggle}>
           {switchStatus ? 'Switch ON' : 'Switch OFF'}
         </button>
+        <button onClick={NavigateToService}>
+          service page</button>
       </div>
+
       <footer className='footer'>
         <p1 className='footer-content'>
           G E N E R A T O R X I N D U S T R I E S

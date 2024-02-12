@@ -47,13 +47,15 @@ body {
 }
 .meter-set{
   display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
 }
 .gauge {
   display: flex;
   flex-direction: column; /* Display gauges vertically */
   align-items: center;
   margin-bottom: 20px;
-  margin-left: 2vw; /* Add margin between gauges */
+  /* Add margin between gauges */
 }
 .download-button{
   height: 20vh;

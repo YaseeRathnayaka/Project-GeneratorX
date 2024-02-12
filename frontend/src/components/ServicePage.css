@@ -1,0 +1,101 @@
+/* ServicePage.css */
+
+.service-page {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .content-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 800px; /* Adjust the max-width as needed */
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .reminder-input {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 45%; /* Adjust the width as needed */
+  }
+  
+  .reminder-input input,
+  .reminder-input button {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .reminder-input button {
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .reminder-input label {
+    margin-right: 10px;
+  }
+  
+  .reminders-list,
+  .notifications-list {
+    width: 45%; /* Adjust the width as needed */
+    overflow-y: auto; /* Add a scroll when content exceeds the container height */
+  }
+  
+  .reminders-list ul,
+  .notifications-list ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .reminders-list li,
+  .notifications-list li {
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .reminders-list button,
+  .notifications-list button {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Add fade-in animation for notifications */
+  .notifications-list li {
+    opacity: 0;
+    animation: fadeIn 0.5s ease-in-out forwards;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .footer {
+    /* Assuming your footer has a fixed height, adjust accordingly */
+    margin-top: 20px;
+  }
+  

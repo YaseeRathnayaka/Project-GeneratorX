@@ -4,15 +4,14 @@
 #include <Wire.h>
 #include <Adafruit_Sensor.h>
 #include <DHT.h>
-#include <HTTPClient.h>
+#include <Ultrasonic.h>
 
-#define WIFI_SSID "G5A"
-#define WIFI_PASSWORD "12345678"
+#define WIFI_SSID "SLT-Fiber-4G"
+#define WIFI_PASSWORD "LandCruiserV8"
 #define API_KEY "AIzaSyAWfhB2BnxeTKNjOBnXxQ6KupNcWvq5wUE"
 #define USER_EMAIL "yasiiirathnayaka@gmail.com"
 #define USER_PASSWORD "123456"
 #define DATABASE_URL "https://genx-119ab-default-rtdb.asia-southeast1.firebasedatabase.app/"
-#define GOOGLE_SHEET_ID "1tdqNnkhz89KTbWQeozvdzIfCQVQPbVx197JhvzpeVzA"
 
 WiFiClientSecure client;
 FirebaseData fbdo;
@@ -24,6 +23,7 @@ String databasePath;
 String tempPath = "/temperature";
 String humPath = "/humidity";
 String currentPath = "/current";
+String distancePath = "/distance";
 String timePath = "/timestamp";
 String parentPath;
 
@@ -35,7 +35,7 @@ const char *ntpServer = "pool.ntp.org";
 #define DHT_PIN 2
 DHT dht(DHT_PIN, DHT22);
 
-#define ACS712_PIN A0
+#define ACS712_PIN 5
 
 float readACS712() {
   int sensorValue = analogRead(ACS712_PIN);
@@ -96,6 +96,10 @@ void setup() {
 unsigned long sendDataPrevMillis = 0;
 unsigned long timerDelay = 300000; // 5 minutes delay
 
+#define TRIGGER_PIN 3
+#define ECHO_PIN 4
+Ultrasonic ultrasonic(TRIGGER_PIN, ECHO_PIN);
+
 void loop() {
   if (Firebase.ready()) {
     timestamp = getTime();
@@ -104,6 +108,9 @@ void loop() {
     // Read DHT22 sensor data
     float temperature = dht.readTemperature();
     float humidity = dht.readHumidity();
+
+    // Read Ultrasonic sensor data
+    float distance = ultrasonic.read();
 
     // Check if the readings are valid
     if (!isnan(temperature) && !isnan(humidity)) {
@@ -119,25 +126,19 @@ void loop() {
       Serial.print("Current: ");
       Serial.print(currentReading);
       Serial.println(" A");
+      Serial.print("Distance: ");
+      Serial.print(distance);
+      Serial.println(" cm");
       Serial.print("Timestamp: ");
       Serial.println(timestamp);
 
       json.set(tempPath.c_str(), String(temperature));
       json.set(humPath.c_str(), String(humidity));
       json.set(currentPath.c_str(), String(currentReading));
+      json.set(distancePath.c_str(), String(distance));
       json.set(timePath.c_str(), String(timestamp));
 
       Serial.printf("Set JSON... %s\n", Firebase.RTDB.setJSON(&fbdo, parentPath.c_str(), &json) ? "ok" : fbdo.errorReason().c_str());
-
-      // Store data in Google Sheets every 5 minutes
-      if ((millis() - sendDataPrevMillis > timerDelay) || sendDataPrevMillis == 0) {
-        sendDataPrevMillis = millis();
-
-        // Send data to Google Sheets
-        sendToGoogleSheets(timestamp, temperature, humidity, currentReading);
-
-        Serial.println("Data sent to Google Sheets");
-      }
     } else {
       // Failed to read from the DHT22 sensor
       Serial.println("Failed to read from DHT22 sensor");
@@ -145,25 +146,4 @@ void loop() {
 
     delay(1000); // Delay for 1 second before sending the next set of data
   }
-}
-
-void sendToGoogleSheets(int timestamp, float temperature, float humidity, float currentReading) {
-  HTTPClient http;
-
-  String url = "https://script.google.com/macros/s/AKfycbyw7tYibBTvEa4aeajDxoBV7nv_L-uBcOpeYINdsqYsm3023L_GGKtU9gr6e9UINbmp/exec";
-  String payload = "timestamp=" + String(timestamp) +
-                   "&temperature=" + String(temperature) +
-                   "&humidity=" + String(humidity) +
-                   "&current=" + String(currentReading);
-
-  int httpResponseCode = http.POST(payload);
-
-  if (httpResponseCode > 0) {
-    Serial.println("Success");
-  } else {
-    Serial.print("Failed, HTTP response code: ");
-    Serial.println(httpResponseCode);
-  }
-
-  http.end();
 }

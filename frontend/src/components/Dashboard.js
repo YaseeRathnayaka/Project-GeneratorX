@@ -12,6 +12,7 @@ const Dashboard = () => {
     temperature: 0,
     humidity: 0,
     current: 0,
+    distance: 0,
     timestamp: 0,
   });
   const [tempratureLabel,setTempratureLabel] = useState('Temprature')
@@ -147,7 +148,7 @@ const Dashboard = () => {
             <ApexChart value={sensorData.current} label={"Current A"}/>
         </div>
         <div className='gauge'>
-            <ApexChart value={sensorData.fuellevel} label={"Fuel-Level"}/>
+            <ApexChart value={sensorData.distance} label={"Fuel-Level"}/>
         </div>
         <div className='gauge'>
             <ApexChart value={sensorData.fuellevel} label={"Coolant-Level"}/>

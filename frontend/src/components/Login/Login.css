@@ -1,0 +1,85 @@
+.admin-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  background-color: #008B8B;
+  padding: 20px;
+  text-align: center;
+}
+
+
+
+.container {
+    height: 80%;
+    min-height: 80vh;
+    width: 80%;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .innerBox {
+    min-width: 400px;
+    height: 450px;
+    width: fit-content;
+    background-color: #fff;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+  }
+  
+  .footer button {
+    outline: none;
+    border: none;
+    background-color: #9900ff;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 10px 16px;
+    width: 100%;
+    transition: 100ms;
+    cursor: pointer;
+  }
+  
+  .footer button:disabled {
+    background-color: gray !important;
+  }
+  
+  .footer button:hover {
+    background-color: #aa2aff;
+  }
+  
+  
+  .footer p span a {
+    font-weight: bold;
+    color: #9900ff;
+    letter-spacing: 1px;
+    font-size: 1rem;
+    text-decoration: none; 
+  }
+   
+  .loginimage{
+    width: 800px;
+    height: 450px;
+    padding-left: 20%;
+  }
+
+
+
+.forgetPassword {
+  margin-top: 40px; /* Adjust the margin value as needed */
+}
+.footer1 {
+  background-color: #008B8B;
+  text-align: center;
+  padding: 30px;
+  margin-top:auto;
+}

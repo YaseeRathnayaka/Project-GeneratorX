@@ -1,0 +1,32 @@
+.pageStyle {
+  background: white;
+}
+
+.spacedTextStyle {
+  letter-spacing: 25px;
+}
+
+.footerTextStyle1 {
+  font-size: 30px;
+  text-align: center;
+}
+.footerTextStyle2 {
+  font-size: 15px;
+  text-align: center;
+}
+.imageContainerStyle {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.rowsize {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.column1 {
+  background: red;
+}

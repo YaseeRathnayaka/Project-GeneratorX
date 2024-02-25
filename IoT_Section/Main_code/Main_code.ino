@@ -112,6 +112,20 @@ void loop() {
     // Read Ultrasonic sensor data
     float distance = ultrasonic.read();
 
+    // Calculate fuel level based on distance
+    int fuelLevel = 0;
+    if (distance >= 10.0) {
+      fuelLevel = 100; // Full
+    } else if (distance >= 7.5) {
+      fuelLevel = 75; // 75%
+    } else if (distance >= 5.0) {
+      fuelLevel = 50; // 50%
+    } else if (distance >= 2.5) {
+      fuelLevel = 25; // 25%
+    } else {
+      fuelLevel = 0; // Empty
+    }
+
     // Check if the readings are valid
     if (!isnan(temperature) && !isnan(humidity)) {
       float currentReading = readACS712();
@@ -129,6 +143,9 @@ void loop() {
       Serial.print("Distance: ");
       Serial.print(distance);
       Serial.println(" cm");
+      Serial.print("Fuel Level: ");
+      Serial.print(fuelLevel);
+      Serial.println("%");
       Serial.print("Timestamp: ");
       Serial.println(timestamp);
 
@@ -136,6 +153,7 @@ void loop() {
       json.set(humPath.c_str(), String(humidity));
       json.set(currentPath.c_str(), String(currentReading));
       json.set(distancePath.c_str(), String(distance));
+      json.set("fuelLevel", String(fuelLevel)); // Add fuel level to JSON
       json.set(timePath.c_str(), String(timestamp));
 
       Serial.printf("Set JSON... %s\n", Firebase.RTDB.setJSON(&fbdo, parentPath.c_str(), &json) ? "ok" : fbdo.errorReason().c_str());

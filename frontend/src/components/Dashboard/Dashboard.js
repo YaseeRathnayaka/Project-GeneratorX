@@ -1,8 +1,8 @@
 // Dashboard.js
 import React, { useState, useEffect } from 'react';
-import { database, auth } from '../firebase';
+import { database, auth } from '../../firebase';
 import './Dashboard.css';
-import img from '../assets/logo.png';
+import img from '../../../src/assets/Gen Xgenx.png';
 import * as XLSX from 'xlsx';
 import ApexChart from './ApexChart';
 import { useNavigate } from 'react-router';
@@ -12,7 +12,7 @@ const Dashboard = () => {
     temperature: 0,
     humidity: 0,
     current: 0,
-    distance: 0,
+    fuellevel: 0,
     timestamp: 0,
   });
   const [tempratureLabel,setTempratureLabel] = useState('Temprature')
@@ -134,7 +134,9 @@ const Dashboard = () => {
 
   return (
     <div className='dashboard-container'>
+      <div className='header-div'>
       <header className='header'></header>
+      </div>
       <img src={img} className='logo' alt='Image Description' />
       <div className='meter-set'>
        
@@ -148,7 +150,7 @@ const Dashboard = () => {
             <ApexChart value={sensorData.current} label={"Current A"}/>
         </div>
         <div className='gauge'>
-            <ApexChart value={sensorData.distance} label={"Fuel-Level"}/>
+            <ApexChart value={sensorData.fuellevel} label={"Fuel-Level"}/>
         </div>
         <div className='gauge'>
             <ApexChart value={sensorData.fuellevel} label={"Coolant-Level"}/>
@@ -164,7 +166,7 @@ const Dashboard = () => {
         <button onClick={NavigateToService}>
           service page</button>
       </div>
-
+      <div className='footer-div'>
       <footer className='footer'>
         <p1 className='footer-content'>
           G E N E R A T O R X I N D U S T R I E S
@@ -174,6 +176,7 @@ const Dashboard = () => {
           Copyright © 2023 All rights reserved by Gen X
         </p2>
       </footer>
+      </div>
     </div>
   );
 };

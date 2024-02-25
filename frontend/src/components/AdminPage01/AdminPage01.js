@@ -1,13 +1,11 @@
-// AdminPage01.js
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import gen_X from '../../assets/Gen Xgenx.png';
 import icon from '../../assets/icons8-user-100 1.png';
 import '../../HomePage.css';
-import styles from './AdminPage01.css'; // Import the generated CSS module
-import { auth } from '../../firebase.js';
+import { auth } from '../../firebase';
 import admin from '../../assets/Admin.png';
+import './AdminPage01.css';
 
 const LogoutLink = () => {
   const handleLogout = async () => {
@@ -15,42 +13,42 @@ const LogoutLink = () => {
   };
 
   return (
-    <div className={styles.pageStyle}>
-      <header className={styles.header}></header>
+    <div className="page">
+      <header className="header"></header>
 
-      <div className={styles.A_P_3_images}>
-        <img src={gen_X} alt="gen_x Image" className={styles.A_P_3_images} />
-        <div className={styles.A_P_3_logout}>
-          <img src={icon} alt="Icon" className={styles.A_P_3_icon1} />
-          <button onClick={handleLogout} className={styles.A_P_3_icon2}>
+      <div className="A_P_3_images">
+        <img src={gen_X} alt="gen_x Image" className="A_P_3_images" />
+        <div className="A_P_3_logout">
+          <img src={icon} alt="Icon" className="A_P_3_icon1" />
+          <button onClick={handleLogout} className="A_P_3_icon2">
             Log Off
           </button>
         </div>
       </div>
 
-      <div className={styles.imageContainerStyle}>
-        <div className={styles.Column2WrapperRow}>
-          <div className={styles.Column2Wrapper} style={styles.column2WrapperStyle}>
-            <img src={admin} className={styles.adminIcon} alt="Admin Image" />
-            <p className={styles.addminP}>
+      <div className="image-container">
+        <div className="Column2WrapperRow">
+          <div className='column-2-wrapper' id="column2-wrapper-1">
+            <img src={admin} className="admin-icon" alt="Admin Image" />
+            <p className="admin-paragraph">
               Click here for all operators related <br />operations
             </p>
             <Link to="/AdminPage3">
-              <button className={styles.buttonIcon}>Operator Management</button>
+              <button className="button-icon">Operator Management</button>
             </Link>
           </div>
-          <div className={styles.Column2Wrapper} style={styles.column2WrapperStyle}>
-            <img src={admin} className={styles.adminIcon} alt="Admin Image" />
-            <p className={styles.addminP}>Click here for all generator related <br />operations</p>
+          <div className='column-2-wrapper' id="column2-wrapper-2">
+            <img src={admin} className="admin-icon" alt="Admin Image" />
+            <p className="admin-paragraph">Click here for all generator related <br />operations</p>
             <Link to="/AdminPage2">
-              <button className={styles.buttonIcon}>Generator Management</button>
+              <button className="button-icon">Generator Management</button>
             </Link>
           </div>
         </div>
       </div>
-      <footer className={styles.footer}>
-        <p style={{ ...styles.spacedTextStyle, ...styles.footerTextStyle1 }}>GENERATOR X INDUSTRIES</p>
-        <p style={styles.footerTextStyle2}>Copyright © 2023 All rights reserved by AD Printers</p>
+      <footer className="footer">
+        <p className="spaced-text footer-text-1">GENERATOR X INDUSTRIES</p>
+        <p className="footer-text-2">Copyright © 2023 All rights reserved by AD Printers</p>
       </footer>
     </div>
   );

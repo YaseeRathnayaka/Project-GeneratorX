@@ -1,14 +1,30 @@
-import React from "react";
+// App.js
+import React, { useEffect, useState } from 'react';
+import { auth } from '../../firebase';
+import { LoginForm, LogoutLink } from './Login.js';
+import AdminPage1 from '../AdminPage01/AdminPage01.js';
 
-import styles from "./InputControl.css";
 
-function InputControl(props) {
+
+const Mac = () => {
+
+  
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setUser(user);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
   return (
-    <div className={styles.container}>
-      {props.label && <label>{props.label}</label>}
-      <input type="text" {...props} />
+    <div>
+      {user ? <LogoutLink /> : <LoginForm />}
+      {user && <AdminPage1 />}
     </div>
   );
-}
+};
 
-export default InputControl;
+export default Mac;

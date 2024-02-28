@@ -33,14 +33,14 @@ const LogoutLink = () => {
             <p className="admin-paragraph">
             Click here for all generator details and previous generator reports. <br />
             </p>
-            <Link to="/OperatorPage03">
+            <Link to="/operatorpage3">
               <button className="button-icon">Generator List</button>
             </Link>
           </div>
           <div className='column-2-wrapper' id="column2-wrapper-2">
             <img src={admin} className="admin-icon" alt="Admin Image" />
             <p className="admin-paragraph">Click here for the generator dashboard of the selected generator. <br /></p>
-            <Link to="/OperatorPage02">
+            <Link to="/dashboard">
               <button className="button-icon">Generator Dashboard</button>
             </Link>
           </div>

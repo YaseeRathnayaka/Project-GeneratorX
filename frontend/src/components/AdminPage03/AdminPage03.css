@@ -1,0 +1,168 @@
+.pageStyle {
+    background: white;
+  }
+  
+  .spacedTextStyle {
+    letter-spacing: 25px;
+  }
+  
+  .footerTextStyle1 {
+    font-size: 30px;
+    text-align: center;
+  }
+  
+  .footerTextStyle2 {
+    font-size: 15px;
+    text-align: center;
+  }
+  
+  .imageContainerStyle {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  
+  .buttonIcon {
+    padding: 20px;
+    color: white;
+    background: rgba(6, 43, 99, 1);
+    border-radius: 10px;
+    width: 100%;
+    margin-top: auto; 
+  }
+  
+  .A_P_3_images {
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+  }
+  
+  .A_P_3_logout {
+    display: flex;
+    align-items: center;
+    height: 50px;
+  }
+  
+  .A_P_3_icon1 {
+    height: 50px;
+    margin-left: 10px;
+  }
+  
+  .A_P_3_icon2 {
+    width: 150px;
+    height: 60px;
+    margin-left: 10px;
+    margin-top: 0;
+    color: white;
+    background: rgba(145, 186, 248, 1);
+    border-radius: 20px;
+  }
+  
+  /* 3AdminPage2 */
+  .buttonIconStyle1 {
+    padding: 5px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    background: rgba(80, 104, 143, 1);
+    border-radius: 5px;
+    width: auto;
+    position: absolute;
+    left: 100px; 
+    top: 200px; 
+  }
+  
+  .buttonIconStyle2 {
+    padding: 5px;
+    font-size: 16px;
+    color: grey;
+    width: auto;
+    position: absolute;
+    right: 200px; 
+    top: 200px; 
+    background: none; 
+    border-bottom: 1px solid black;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+  }
+  
+  .buttonIconStylei {
+    padding: 5px;
+    font-size: 16px;
+    color: grey;
+    width: auto;
+    position: absolute;
+    right: 200px;
+    top: 200px; 
+    background: none; 
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+  }
+  
+  .table {
+    padding: 125px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 80%;
+    position: absolute;
+    left: 100px;
+    top: 250px;
+    border-collapse: collapse;
+    padding: 0px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 1);
+  }
+  
+  .table_header {
+    border-bottom: 1px solid white;
+    border-left: 1px solid white;
+    background-color: rgba(80, 104, 143, 1);
+    color: white;
+    padding: 10px;
+  }
+  
+  .table_data {
+    border-bottom: 1px solid rgba(58, 53, 53, 0.62);
+    border-left: 1px solid rgba(58, 53, 53, 0.62);
+    color: black;
+    padding: 10px;
+  }
+  
+  .table_footer {
+    color: black;
+    text-align: center;
+  }
+  
+  
+  .formVisibility_form {
+    margin: 120px;
+    padding: 50px;
+    align-content: center;
+    color: blue;
+  }
+  
+  .faPlusCircle {
+    margin-right: 5px;
+    font-size: 16px;
+    padding: auto;
+  }
+  
+  .p_footer {
+    font-weight: bold;
+    margin-left: 100px;
+    position: absolute;
+    bottom: 0;
+    color: black;
+    left: 0;
+   
+  }
+  

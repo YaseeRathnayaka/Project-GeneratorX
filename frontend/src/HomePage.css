@@ -1,26 +1,28 @@
-body {
-    margin: 0;
-    height: 100vh;
-  }
+
   
   .header {
     background-color: rgba(6, 43, 99, 1); 
     color: white; 
-    padding: 20px;
+    height: 20px;
+    display: flex;
+    padding: 15px;
+    
   }
   
   .footer {
     background-color: rgba(6, 43, 99, 1); 
-    color: white; 
-    padding: 1px;
-    font-family: Inter, sans-serif;
+    color: white;
+    margin-top: 500px;
+    display: absolute;
+    position:static;
+    
   }
   
   .body {
-    display: grid;
+    display: flex;
     grid-template-rows: 1fr 1fr 1fr; 
     height: calc(100vh - 42px);
-    overflow: auto; 
+    overflow:hidden;
   }
   
   .row {

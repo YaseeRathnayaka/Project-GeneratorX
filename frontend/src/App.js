@@ -10,6 +10,7 @@ import AdminPage3 from './components/AdminPage03/AdminPage03.js';
 import OperatorPage1 from './components/OperatorPage01/OperatorPage01.js';
 import OperatorPage2 from './components/OperatorPage02/OperatorPage02.js';
 import OperatorPage3 from './components/OperatorPage03/OperatorPage03.js';
+import UserTable from './components/UserTable/UserTable.js';
 
 const App = () => {
   return (
@@ -24,7 +25,7 @@ const App = () => {
           <Route path="/operatorpage1" element={<OperatorPage1 />} />
           <Route path="/operatorpage2" element={<OperatorPage2 />} />
           <Route path="/operatorpage3" element={<OperatorPage3 />} />
-          
+          <Route path="/usertable" element={<UserTable />} />
       </Routes>
     </Router>
   );

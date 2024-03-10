@@ -13,7 +13,7 @@
     "moment": "^2.30.1",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.1",
-    "react-bootstrap": "^2.10.0",
+    "react-bootstrap": "^2.10.1",
     "react-chartjs-2": "^5.2.0",
     "react-d3-speedometer": "^2.2.0",
     "react-datepicker": "^6.1.0",

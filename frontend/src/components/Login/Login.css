@@ -8,6 +8,8 @@
 
 .page {
   background: white;
+  height: fit-content;
+  display: contents;
 }
 
 .image-container-2 {
@@ -84,5 +86,9 @@
 .error-message{
   color: red;
 }
-
+.footer{
+  display: flex;
+  margin-top: auto;
+  height: 100px;
+}
 

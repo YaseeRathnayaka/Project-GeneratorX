@@ -10,9 +10,9 @@ import { useNavigate } from 'react-router';
 const Dashboard = () => {
   const [sensorData, setSensorData] = useState({
     temperature: 0,
-    humidity: 0,
+    voltage: 0,
     current: 0,
-    distance: 0,
+    coolentLevel: 0,
     fuelLevel:0,
     timestamp: 0,
   });
@@ -145,16 +145,16 @@ const Dashboard = () => {
             <ApexChart value={sensorData.temperature} label={"Temprature C"}/>
         </div>
         <div className='gauge'>
-            <ApexChart value={sensorData.humidity} label={"Voltage V"} />
+            <ApexChart value={sensorData.voltage} label={"Voltage V"} />
         </div>
         <div className='gauge'>
             <ApexChart value={sensorData.current} label={"Current A"}/>
         </div>
         <div className='gauge'>
-            <ApexChart value={sensorData.distance} label={"Fuel-Level"}/>
+            <ApexChart value={sensorData.fuelLevel} label={"Fuel-Level"}/>
         </div>
         <div className='gauge'>
-            <ApexChart value={sensorData.fuelLevel} label={"Coolant-Level"}/>
+            <ApexChart value={sensorData.coolentLevel} label={"Coolant-Level"}/>
         </div>
       </div>
       <div>

@@ -46,7 +46,7 @@ DHT dht(DHT_PIN, DHT22);
 
 float readACS712() {
   int sensorValue = analogRead(ACS712_PIN);
-  float current = sensorValue;
+  float current = sensorValue*(4095/3300)*0.01;
   return current;
 }
 
@@ -111,7 +111,7 @@ void loop() {
 
     // Read DHT22 sensor data
     float temperature = dht.readTemperature();
-    float humidity = dht.readHumidity();
+
 
     // Read Ultrasonic sensor data
     digitalWrite(TRIGGER_PIN, LOW);
@@ -123,23 +123,53 @@ void loop() {
     unsigned int distance = duration * 0.034 / 2;
 
     // Generate dummy fuel level data
-    int fuelLevel = random(80, 100);
-
+    int fuelLevel;
+    if (distance >= 20) {
+      fuelLevel = 100;
+    } else if (distance >= 15 && distance < 20) {
+      fuelLevel = 75;
+    } else if (distance >= 10 && distance < 15) {
+      fuelLevel = 50;
+    } else if (distance >= 5 && distance < 10) {
+      fuelLevel = 25;
+    } else if (distance >= 3 && distance < 5) {
+      fuelLevel = 12;
+    } else if (distance >= 1 && distance < 3) {
+      fuelLevel = 5;
+    } else {
+      fuelLevel = 0;
+    }
+    int coolentLevel ;
+    if (distance >= 20) {
+      coolentLevel = 100;
+    } else if (distance >= 20 && distance < 25) {
+      coolentLevel = 70;
+    } else if (distance >= 15 && distance < 20) {
+      coolentLevel = 50;
+    } else if (distance >= 10 && distance < 15) {
+      coolentLevel = 25;
+    } else if (distance >= 8 && distance < 10) {
+      coolentLevel = 12;
+    } else if (distance >= 5 && distance < 8) {
+      coolentLevel = 5;
+    } else {
+      coolentLevel = 0;
+    }
     // Read ACS712 sensor data
     float currentReading = readACS712();
 
     // Read voltage sensor data
     int voltageSensorValue = analogRead(VOLTAGE_SENSOR_PIN);
-    float voltage = (voltageSensorValue)*3.3 / 4095; // Assuming the voltage sensor module outputs 0-25V
+    float voltage = (voltageSensorValue)*33*3 / 4095; // Assuming the voltage sensor module outputs 0-25V
 
     // Check if the readings are valid
-    if (!isnan(temperature) && !isnan(humidity) && !isnan(currentReading)) {
+    if (!isnan(temperature) && !isnan(currentReading)) {
       Serial.println("Sensor Readings:");
       Serial.print("Temperature: ");
       Serial.print(temperature);
       Serial.println(" °C");
-      Serial.print("Humidity: ");
-      Serial.print(humidity);
+      Serial.print("coolentLevel: ");
+      Serial.print(coolentLevel);
       Serial.println(" %");
       Serial.print("Current: ");
       Serial.print(currentReading);
@@ -157,7 +187,7 @@ void loop() {
       Serial.println(timestamp);
 
       json.set(tempPath.c_str(), String(temperature, 2)); // Assuming 2 decimal places for temperature
-      json.set(humPath.c_str(), String(humidity, 2));    // Assuming 2 decimal places for humidity
+      json.set("coolentLevel", String(coolentLevel));    // Assuming 2 decimal places for humidity
       json.set(currentPath.c_str(), String(currentReading, 4)); // Assuming 4 decimal places for current
       json.set(distancePath.c_str(), String(distance, 2)); // Assuming 2 decimal places for distance
       json.set("fuelLevel", String(fuelLevel));

@@ -4,7 +4,6 @@
 #include <Wire.h>
 #include <Adafruit_Sensor.h>
 #include <DHT.h>
-#include <NewPing.h>
 
 #define WIFI_SSID "SLT-Fiber-4G"
 #define WIFI_PASSWORD "LandCruiserV8"
@@ -38,9 +37,12 @@ DHT dht(DHT_PIN, DHT22);
 
 #define ACS712_PIN 34
 #define ACS712_ZERO_CURRENT_READING 512 // Adjust this based on your module
-#define ACS712_SENSITIVITY 1        // Adjust this based on your module
+#define ACS712_SENSITIVITY 1            // Adjust this based on your module
 
 #define VOLTAGE_SENSOR_PIN 32
+
+#define TRIGGER_PIN 3
+#define ECHO_PIN 4
 
 float readACS712() {
   int sensorValue = analogRead(ACS712_PIN);
@@ -50,6 +52,8 @@ float readACS712() {
 
 void initSensor() {
   dht.begin();
+  pinMode(TRIGGER_PIN, OUTPUT);
+  pinMode(ECHO_PIN, INPUT);
 }
 
 void initWiFi() {
@@ -100,10 +104,6 @@ void setup() {
 unsigned long sendDataPrevMillis = 0;
 unsigned long timerDelay = 300000; // 5 minutes delay
 
-#define TRIGGER_PIN 3
-#define ECHO_PIN 4
-NewPing sonar(TRIGGER_PIN, ECHO_PIN);
-
 void loop() {
   if (Firebase.ready()) {
     timestamp = getTime();
@@ -114,7 +114,13 @@ void loop() {
     float humidity = dht.readHumidity();
 
     // Read Ultrasonic sensor data
-    unsigned int distance = sonar.ping_cm();
+    digitalWrite(TRIGGER_PIN, LOW);
+    delayMicroseconds(2);
+    digitalWrite(TRIGGER_PIN, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(TRIGGER_PIN, LOW);
+    unsigned long duration = pulseIn(ECHO_PIN, HIGH);
+    unsigned int distance = duration * 0.034 / 2;
 
     // Generate dummy fuel level data
     int fuelLevel = random(80, 100);
@@ -124,7 +130,7 @@ void loop() {
 
     // Read voltage sensor data
     int voltageSensorValue = analogRead(VOLTAGE_SENSOR_PIN);
-    float voltage = (voltageSensorValue)*3.3/4095;  // Assuming the voltage sensor module outputs 0-25V
+    float voltage = (voltageSensorValue)*3.3 / 4095; // Assuming the voltage sensor module outputs 0-25V
 
     // Check if the readings are valid
     if (!isnan(temperature) && !isnan(humidity) && !isnan(currentReading)) {
@@ -164,6 +170,6 @@ void loop() {
       Serial.println("Failed to read sensor data");
     }
 
-    delay(5000); // Delay for 1 second before sending the next set of data
+    delay(2000); // Delay for 5 seconds before sending the next set of data
   }
 }

@@ -4,7 +4,7 @@
 #include <Wire.h>
 #include <Adafruit_Sensor.h>
 #include <DHT.h>
-#include <Ultrasonic.h>
+#include <NewPing.h>
 
 #define WIFI_SSID "SLT-Fiber-4G"
 #define WIFI_PASSWORD "LandCruiserV8"
@@ -24,6 +24,7 @@ String tempPath = "/temperature";
 String humPath = "/humidity";
 String currentPath = "/current";
 String distancePath = "/distance";
+String voltagePath = "/voltage";
 String timePath = "/timestamp";
 String parentPath;
 
@@ -35,12 +36,15 @@ const char *ntpServer = "pool.ntp.org";
 #define DHT_PIN 2
 DHT dht(DHT_PIN, DHT22);
 
-#define ACS712_PIN 5
+#define ACS712_PIN 34
+#define ACS712_ZERO_CURRENT_READING 512 // Adjust this based on your module
+#define ACS712_SENSITIVITY 1        // Adjust this based on your module
+
+#define VOLTAGE_SENSOR_PIN 32
 
 float readACS712() {
   int sensorValue = analogRead(ACS712_PIN);
-  float voltage = sensorValue * (5.0 / 1023.0);
-  float current = (voltage - 2.5) / 0.066;
+  float current = sensorValue;
   return current;
 }
 
@@ -98,7 +102,7 @@ unsigned long timerDelay = 300000; // 5 minutes delay
 
 #define TRIGGER_PIN 3
 #define ECHO_PIN 4
-Ultrasonic ultrasonic(TRIGGER_PIN, ECHO_PIN);
+NewPing sonar(TRIGGER_PIN, ECHO_PIN);
 
 void loop() {
   if (Firebase.ready()) {
@@ -110,26 +114,20 @@ void loop() {
     float humidity = dht.readHumidity();
 
     // Read Ultrasonic sensor data
-    float distance = ultrasonic.read();
+    unsigned int distance = sonar.ping_cm();
 
-    // Calculate fuel level based on distance
-    int fuelLevel = 0;
-    if (distance >= 10.0) {
-      fuelLevel = 100; // Full
-    } else if (distance >= 7.5) {
-      fuelLevel = 75; // 75%
-    } else if (distance >= 5.0) {
-      fuelLevel = 50; // 50%
-    } else if (distance >= 2.5) {
-      fuelLevel = 25; // 25%
-    } else {
-      fuelLevel = 0; // Empty
-    }
+    // Generate dummy fuel level data
+    int fuelLevel = random(80, 100);
+
+    // Read ACS712 sensor data
+    float currentReading = readACS712();
+
+    // Read voltage sensor data
+    int voltageSensorValue = analogRead(VOLTAGE_SENSOR_PIN);
+    float voltage = (voltageSensorValue)*3.3/4095;  // Assuming the voltage sensor module outputs 0-25V
 
     // Check if the readings are valid
-    if (!isnan(temperature) && !isnan(humidity)) {
-      float currentReading = readACS712();
-
+    if (!isnan(temperature) && !isnan(humidity) && !isnan(currentReading)) {
       Serial.println("Sensor Readings:");
       Serial.print("Temperature: ");
       Serial.print(temperature);
@@ -146,22 +144,26 @@ void loop() {
       Serial.print("Fuel Level: ");
       Serial.print(fuelLevel);
       Serial.println("%");
+      Serial.print("Voltage: ");
+      Serial.print(voltage);
+      Serial.println(" V");
       Serial.print("Timestamp: ");
       Serial.println(timestamp);
 
-      json.set(tempPath.c_str(), String(temperature));
-      json.set(humPath.c_str(), String(humidity));
-      json.set(currentPath.c_str(), String(currentReading));
-      json.set(distancePath.c_str(), String(distance));
-      json.set("fuelLevel", String(fuelLevel)); // Add fuel level to JSON
+      json.set(tempPath.c_str(), String(temperature, 2)); // Assuming 2 decimal places for temperature
+      json.set(humPath.c_str(), String(humidity, 2));    // Assuming 2 decimal places for humidity
+      json.set(currentPath.c_str(), String(currentReading, 4)); // Assuming 4 decimal places for current
+      json.set(distancePath.c_str(), String(distance, 2)); // Assuming 2 decimal places for distance
+      json.set("fuelLevel", String(fuelLevel));
+      json.set(voltagePath.c_str(), String(voltage, 2)); // Assuming 2 decimal places for voltage
       json.set(timePath.c_str(), String(timestamp));
 
       Serial.printf("Set JSON... %s\n", Firebase.RTDB.setJSON(&fbdo, parentPath.c_str(), &json) ? "ok" : fbdo.errorReason().c_str());
     } else {
-      // Failed to read from the DHT22 sensor
-      Serial.println("Failed to read from DHT22 sensor");
+      // Failed to read from the sensors
+      Serial.println("Failed to read sensor data");
     }
 
-    delay(1000); // Delay for 1 second before sending the next set of data
+    delay(5000); // Delay for 1 second before sending the next set of data
   }
 }

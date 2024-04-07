@@ -167,6 +167,8 @@ const Dashboard = () => {
         <button onClick={NavigateToService} className='servicepagebutton'>
           Click here for service page</button>
       </div>
+
+      
       <div className='footer-div'>
       <footer className='footer'>
         <p1 className='footer-content'>

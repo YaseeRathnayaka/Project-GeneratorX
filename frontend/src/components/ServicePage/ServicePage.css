@@ -1,5 +1,9 @@
 /* ServicePage.css */
-
+.header-div {
+  height: 5px;
+  background-color: #062B63;
+  width: 100%;
+}
 .service-page {
     font-family: 'Arial', sans-serif;
     background-color: #f4f4f4;
@@ -11,6 +15,9 @@
     text-align: center;
   }
   
+  .headertitle{
+    margin-top: 10%;
+  }
   .content-container {
     display: flex;
     justify-content: space-between;
@@ -92,6 +99,20 @@
     to {
       opacity: 1;
     }
+  }
+  
+  .footer-content {
+    letter-spacing: 20px;
+    color: white;
+    text-align: center;
+    align-items: center;
+  }
+  
+  .footer-bottom-text {
+    align-items: center;
+    letter-spacing: normal;
+    text-align: center;
+    color: white;
   }
   
   .footer {

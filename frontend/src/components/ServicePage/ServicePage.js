@@ -74,8 +74,10 @@ const ServicePage = () => {
 
   return (
     <div className="service-page">
-      <header className="header"></header>
-      <h1>Service Page</h1>
+      <div className='header-div'>
+      <header className='header'></header>
+      </div>
+      <h1 className='headertitle'>Service Page</h1>
       <div className="reminder-input">
         <input
           type="text"
@@ -136,6 +138,18 @@ const ServicePage = () => {
             </li>
           ))}
         </ul>
+      </div>
+
+      <div className='footer-div'>
+      <footer className='footer'>
+        <p1 className='footer-content'>
+          G E N E R A T O R X I N D U S T R I E S
+        </p1>
+        <br/>
+        <p2 className='footer-bottom-text'>
+          Copyright © 2023 All rights reserved by Gen X
+        </p2>
+      </footer>
       </div>
       
     </div>

@@ -2,8 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import gen_X from '../../assets/Gen Xgenx.png';
 import icon from '../../assets/icons8-user-100 1.png';
-import '../../HomePage.css';
-import { auth } from '../../firebase';
+import { auth } from '../../firebase.js';
 import admin from '../../assets/Admin.png';
 import './AdminPage01.css';
 
@@ -33,14 +32,14 @@ const LogoutLink = () => {
             <p className="admin-paragraph">
               Click here for all operators related <br />operations
             </p>
-            <Link to="/usertable">
+            <Link to="/AdminPage3">
               <button className="button-icon">Operator Management</button>
             </Link>
           </div>
           <div className='column-2-wrapper' id="column2-wrapper-2">
             <img src={admin} className="admin-icon" alt="Admin Image" />
             <p className="admin-paragraph">Click here for all generator related <br />operations</p>
-            <Link to="/dashboard">
+            <Link to="/AdminPage2">
               <button className="button-icon">Generator Management</button>
             </Link>
           </div>

@@ -74,8 +74,11 @@ const ServicePage = () => {
 
   return (
     <div className="service-page">
+      <div className='header'>
       <header className="header"></header>
+      </div>
       <h1>Service Page</h1>
+      <div className='column'>
       <div className="reminder-input">
         <input
           type="text"
@@ -137,7 +140,8 @@ const ServicePage = () => {
           ))}
         </ul>
       </div>
-      
+      </div>
+      <footer className='footer'></footer>
     </div>
   );
 };

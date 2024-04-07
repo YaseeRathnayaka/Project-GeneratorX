@@ -4,13 +4,13 @@ import 'firebase/auth';
 import 'firebase/database';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAWfhB2BnxeTKNjOBnXxQ6KupNcWvq5wUE",
-    authDomain: "genx-119ab.firebaseapp.com",
-    databaseURL: "https://genx-119ab-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "genx-119ab",
-    storageBucket: "genx-119ab.appspot.com",
-    messagingSenderId: "116686597163",
-    appId: "1:116686597163:web:804911fb329005b39c0e6e"
+    apiKey: "AIzaSyCjLiE1yQU-L860nsmFXKe3LJVohw1T7ec",
+    authDomain: "genx-v42.firebaseapp.com",
+    databaseURL: "https://genx-v42-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "genx-v42",
+    storageBucket: "genx-v42.appspot.com",
+    messagingSenderId: "204000689935",
+    appId: "1:204000689935:web:883000c61d00e9f968887a"
 };
 
 firebase.initializeApp(firebaseConfig);

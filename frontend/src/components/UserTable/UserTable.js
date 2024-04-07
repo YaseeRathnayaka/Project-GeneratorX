@@ -1,131 +1,141 @@
 // UserTable.js
 
 import React, { useState, useEffect } from 'react';
-import { Table, Button, Modal, Form } from 'react-bootstrap';
+import { Table, Button, Form, FormGroup, FormControl, FormLabel } from 'react-bootstrap';
 import firebase from 'firebase/app';
 import 'firebase/auth';
-import 'firebase/database';
 import './UserTable.css';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAWfhB2BnxeTKNjOBnXxQ6KupNcWvq5wUE",
-    authDomain: "genx-119ab.firebaseapp.com",
-    databaseURL: "https://genx-119ab-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "genx-119ab",
-    storageBucket: "genx-119ab.appspot.com",
-    messagingSenderId: "116686597163",
-    appId: "1:116686597163:web:804911fb329005b39c0e6e"
-};
+  apiKey: "AIzaSyCjLiE1yQU-L860nsmFXKe3LJVohw1T7ec",
+  authDomain: "genx-v42.firebaseapp.com",
+  databaseURL: "https://genx-v42-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "genx-v42",
+  storageBucket: "genx-v42.appspot.com",
+  messagingSenderId: "204000689935",
+  appId: "1:204000689935:web:883000c61d00e9f968887a"};
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
 
 const auth = firebase.auth();
-const database = firebase.database();
 
 const UserTable = () => {
   const [users, setUsers] = useState([]);
-  const [showModal, setShowModal] = useState(false);
-  const [userData, setUserData] = useState({
-    name: '',
-    email: '',
-    userId: '',
-    password: '',
-    lastLogin: '',
-  });
+  const [newUserEmail, setNewUserEmail] = useState('');
+  const [newUserPassword, setNewUserPassword] = useState('');
 
   useEffect(() => {
-    const usersRef = database.ref('users');
-    usersRef.on('value', (snapshot) => {
-      const fetchedUsers = snapshot.val();
-      if (fetchedUsers) {
-        const userList = Object.keys(fetchedUsers).map((key) => ({
-          userId: key,
-          ...fetchedUsers[key],
+    const fetchUsers = async () => {
+      try {
+        const userRecords = await auth.listUsers();
+        const userList = userRecords.users.map((userRecord) => ({
+          uid: userRecord.uid,
+          email: userRecord.email,
+          displayName: userRecord.displayName || '',
+          lastSignInTime: userRecord.metadata.lastSignInTime,
         }));
         setUsers(userList);
+      } catch (error) {
+        console.error('Error fetching users:', error);
       }
-    });
+    };
 
-    auth.onAuthStateChanged((user) => {
+    fetchUsers();
+
+    const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
-        setUserData({
-          name: user.displayName || '',
-          email: user.email || '',
-          userId: user.uid || '',
-          lastLogin: user.metadata.lastSignInTime || '',
-        });
-
-        // Display authenticated user in the table
-        setUsers((prevUsers) => [...prevUsers, userData]);
+        // If a new user signs in, add them to the state
+        const newUser = {
+          uid: user.uid,
+          email: user.email,
+          displayName: user.displayName || '',
+          lastSignInTime: user.metadata.lastSignInTime,
+        };
+        setUsers((prevUsers) => [newUser, ...prevUsers]);
       }
     });
 
     return () => {
-      usersRef.off();
+      unsubscribe();
     };
   }, []);
 
-  const handleShow = () => setShowModal(true);
-  const handleClose = () => setShowModal(false);
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setUserData({ ...userData, [name]: value });
+  const handleDeleteUser = async (uid) => {
+    try {
+      await auth.deleteUser(uid);
+      setUsers((prevUsers) => prevUsers.filter((user) => user.uid !== uid));
+      console.log('User deleted successfully.');
+    } catch (error) {
+      console.error('Error deleting user:', error);
+    }
   };
 
-  const handleAddUser = () => {
-    const usersRef = database.ref('users');
-    const newUserRef = usersRef.push();
-    newUserRef.set(userData);
-
-    auth
-      .createUserWithEmailAndPassword(userData.email, userData.password)
-      .then(() => {
-        console.log('User added successfully!');
-        alert('User added successfully!');
-        handleClose();
-      })
-      .catch((error) => {
-        console.error('Error adding user:', error.message);
-        alert('Error adding user. Please check the console for details.');
-      });
-
-    setUsers((prevUsers) => [...prevUsers, userData]);
-  };
-
-  const handleDeleteUser = (userId) => {
-    const userRef = database.ref(`users/${userId}`);
-    userRef.remove();
+  const handleAddUser = async (e) => {
+    e.preventDefault();
+    try {
+      const userCredential = await auth.createUserWithEmailAndPassword(newUserEmail, newUserPassword);
+      const newUser = {
+        uid: userCredential.user.uid,
+        email: newUserEmail,
+        displayName: '',
+        lastSignInTime: null,
+      };
+      setUsers((prevUsers) => [newUser, ...prevUsers]);
+      console.log('User added successfully.');
+      setNewUserEmail('');
+      setNewUserPassword('');
+    } catch (error) {
+      console.error('Error adding user:', error);
+    }
   };
 
   return (
     <div>
-      <Button onClick={handleShow}>Add User</Button>
+      <Form onSubmit={handleAddUser} inline>
+        <FormGroup className="mb-2 mr-sm-2">
+          <FormLabel className="mr-sm-2">Email</FormLabel>
+          <FormControl
+            type="email"
+            value={newUserEmail}
+            onChange={(e) => setNewUserEmail(e.target.value)}
+            required
+          />
+        </FormGroup>
+        <FormGroup className="mb-2 mr-sm-2">
+          <FormLabel className="mr-sm-2">Password</FormLabel>
+          <FormControl
+            type="password"
+            value={newUserPassword}
+            onChange={(e) => setNewUserPassword(e.target.value)}
+            required
+          />
+        </FormGroup>
+        <Button type="submit" className="mb-2">Add User</Button>
+      </Form>
+
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>User Name</th>
-            <th>User Email</th>
             <th>User ID</th>
-            <th>Last Login</th>
-            <th>Password</th>
+            <th>Email</th>
+            <th>Display Name</th>
+            <th>Last Sign-In Time</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
           {users.map((user, index) => (
             <tr key={index}>
-              <td>{user.name}</td>
+              <td>{user.uid}</td>
               <td>{user.email}</td>
-              <td>{user.userId}</td>
-              <td>{user.lastLogin}</td>
-              <td>{user.password}</td>
+              <td>{user.displayName}</td>
+              <td>{user.lastSignInTime}</td>
               <td>
                 <Button
                   variant="danger"
-                  onClick={() => handleDeleteUser(user.userId)}
+                  onClick={() => handleDeleteUser(user.uid)}
                 >
                   Delete
                 </Button>
@@ -134,63 +144,6 @@ const UserTable = () => {
           ))}
         </tbody>
       </Table>
-
-      <Modal show={showModal} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Add User</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group controlId="formName">
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter name"
-                name="name"
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-
-            <Form.Group controlId="formEmail">
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="Enter email"
-                name="email"
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-
-            <Form.Group controlId="formUserId">
-              <Form.Label>User ID</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter user ID"
-                name="userId"
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-
-            <Form.Group controlId="formPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Enter password"
-                name="password"
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleAddUser}>
-            Add User
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </div>
   );
 };

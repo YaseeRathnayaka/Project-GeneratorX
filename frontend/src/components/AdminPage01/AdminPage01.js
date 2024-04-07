@@ -33,14 +33,14 @@ const LogoutLink = () => {
             <p className="admin-paragraph">
               Click here for all operators related <br />operations
             </p>
-            <Link to="/AdminPage3">
+            <Link to="/usertable">
               <button className="button-icon">Operator Management</button>
             </Link>
           </div>
           <div className='column-2-wrapper' id="column2-wrapper-2">
             <img src={admin} className="admin-icon" alt="Admin Image" />
             <p className="admin-paragraph">Click here for all generator related <br />operations</p>
-            <Link to="/AdminPage2">
+            <Link to="/dashboard">
               <button className="button-icon">Generator Management</button>
             </Link>
           </div>

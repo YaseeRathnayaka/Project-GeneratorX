@@ -5,12 +5,12 @@
 #include <Adafruit_Sensor.h>
 #include <DHT.h>
 
-#define WIFI_SSID "SLT-Fiber-4G"
-#define WIFI_PASSWORD "LandCruiserV8"
-#define API_KEY "AIzaSyAWfhB2BnxeTKNjOBnXxQ6KupNcWvq5wUE"
+#define WIFI_SSID "G5A"
+#define WIFI_PASSWORD "12345678"
+#define API_KEY "AIzaSyCjLiE1yQU-L860nsmFXKe3LJVohw1T7ec"
 #define USER_EMAIL "yasiiirathnayaka@gmail.com"
 #define USER_PASSWORD "123456"
-#define DATABASE_URL "https://genx-119ab-default-rtdb.asia-southeast1.firebasedatabase.app/"
+#define DATABASE_URL "https://genx-v42-default-rtdb.asia-southeast1.firebasedatabase.app"
 
 WiFiClientSecure client;
 FirebaseData fbdo;

@@ -43,7 +43,6 @@
   }
   
   .reminder-input button {
-    background-color: #007bff;
     color: #fff;
     cursor: pointer;
   }
@@ -119,4 +118,11 @@
     /* Assuming your footer has a fixed height, adjust accordingly */
     margin-top: 20px;
   }
+
+  .addreminderbutton{
+    background-color: #50688F;
+  }
   
+  .addreminderbutton:hover{
+    background-color: #062B63;
+  }

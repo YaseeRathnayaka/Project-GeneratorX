@@ -115,7 +115,7 @@ const ServicePage = () => {
             onChange={(e) => setNewReminder({ ...newReminder, minutes: parseInt(e.target.value) })}
           />
         </div>
-        <button onClick={addReminder}>Add Reminder</button>
+        <button onClick={addReminder} className='addreminderbutton'>Add Reminder</button>
       </div>
       <div className="reminders-list">
         <h2>Reminders</h2>

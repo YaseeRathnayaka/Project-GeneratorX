@@ -50,7 +50,7 @@ body {
   width: 75px;
 }
 .switchoffbutton {
-  size: 10% !important;
+  size:10% !important;
   margin-top: 480px;
   margin-right: 100px;
   padding-top: 10px;
@@ -66,6 +66,10 @@ body {
   color: white;
   border: none;
   font-weight: bold;
+}
+
+.switchoffbutton:hover{
+  background-color: #062B63;
 }
 
 .servicepagebutton{
@@ -86,6 +90,10 @@ body {
   font-weight: bold;
 }
 
+.servicepagebutton:hover {
+  background-color: #062B63;
+}
+
 .download-button {
   size: 10% !important;
   margin-top: 480px;
@@ -102,6 +110,10 @@ body {
   color: white;
   border: none;
   font-weight: bold;
+}
+
+.download-button:hover{
+  background-color: #062B63;
 }
 
 .dashboard-container {

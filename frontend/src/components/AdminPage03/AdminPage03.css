@@ -74,6 +74,9 @@
     background: rgba(145, 186, 248, 1);
     border-radius: 20px;
   }
+  .A_P_3_icon2:hover {
+    background-color: #062B63;
+  }
   
   /* 3AdminPage2 */
   .buttonIconStyle1 {

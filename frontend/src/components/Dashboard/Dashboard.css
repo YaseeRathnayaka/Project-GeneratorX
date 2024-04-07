@@ -48,10 +48,11 @@ body {
 .logo {
   padding: 20px;
   width: 75px;
+  margin-top: 3%;
 }
 .switchoffbutton {
   size:10% !important;
-  margin-top: 480px;
+  margin-top: 500px;
   margin-right: 100px;
   padding-top: 10px;
   position: absolute;
@@ -74,7 +75,7 @@ body {
 
 .servicepagebutton{
   size: 10% !important;
-  margin-top: 480px;
+  margin-top: 500px;
   padding-top: 10px;
   position: absolute;
   top: 10px;
@@ -96,7 +97,7 @@ body {
 
 .download-button {
   size: 10% !important;
-  margin-top: 480px;
+  margin-top: 500px;
   padding-top: 10px;
   position: absolute;
   top: 10px;

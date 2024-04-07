@@ -140,6 +140,7 @@ const Dashboard = () => {
       </div>
       <img src={img} className='logo' alt='Image Description' />
       <div className='meter-set'>
+        
        
         <div className='gauge'>
             <ApexChart value={sensorData.temperature} label={"Temprature C"}/>

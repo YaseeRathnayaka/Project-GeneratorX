@@ -92,6 +92,11 @@
   height: 47px;
   color: white;
 }
+
+.login-button:hover{
+  background-color: #062B63;
+}
+
 .forgot-password{
   color: rgba(80, 104, 143, 1);
 }

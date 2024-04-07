@@ -1,94 +1,89 @@
-.image-container {
+.login-page {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
   min-height: 100vh;
 }
 
-.page {
-  background: white;
-  height: fit-content;
-  display: contents;
-}
-
-.image-container-2 {
-  display: flex;
-  width: 80%;
-}
-
-.column-1 {
-  flex: 1;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-.column-2-wrapper-1 {
-  box-shadow: 5px 5px 10px rgba(13, 15, 20, 0.1);
-  width: 65%;
-  margin: 0 20px;
-}
-
-.column-2-wrapper-2 {
-  box-shadow: 5px 5px 10px rgba(13, 15, 20, 0.1);
-  width: 35%;
-  margin: 0 20px;
-}
-
-.column-2 {
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-.input-line {
-  border-bottom: 1px solid black;
-  margin: 10px;
-  padding: 5px;
-  width: 100%;
-  border-left: none;
-  border-right: none;
-  border-top: none;
-}
-
-.center-image {
-  width: 100%;
-  height: 100%;
-}
-
-.spaced-text {
-  letter-spacing: 25px;
-}
-
-.footer-text-1 {
-  font-size: 30px;
+.header {
+  background-color: #008B8B;
+  padding: 50px;
   text-align: center;
 }
 
-.footer-text-2 {
-  font-size: 15px;
+
+
+.container {
+    height: 80%;
+    min-height: 80vh;
+    width: 80%;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .innerBox {
+    min-width: 400px;
+    height: 450px;
+    width: fit-content;
+    background-color: #fff;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+  }
+  
+  .footer button {
+    outline: none;
+    border: none;
+    background-color: #9900ff;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 10px 16px;
+    width: 100%;
+    transition: 100ms;
+    cursor: pointer;
+  }
+  
+  .footer button:disabled {
+    background-color: gray !important;
+  }
+  
+  .footer button:hover {
+    background-color: #aa2aff;
+  }
+  
+  
+  .footer p span a {
+    font-weight: bold;
+    color: #9900ff;
+    letter-spacing: 1px;
+    font-size: 1rem;
+    text-decoration: none; 
+  }
+   
+  .loginimage{
+    width: 800px;
+    height: 450px;
+    padding-left: 20%;
+  }
+
+
+
+.forgetPassword {
+  margin-top: 40px; /* Adjust the margin value as needed */
+}
+.footer1 {
+  background-color: #008B8B;
   text-align: center;
-}
-.input-label{
-  color: rgba(80, 104, 143, 1);
-  text-align: left;
-}
-.login-button
-{
-  background: rgba(54, 72, 107, 1);
-  border-radius: 6px;
-  width: 25%;
-  height: 47px;
-  color: white;
-}
-.forgot-password{
-  color: rgba(80, 104, 143, 1);
-}
-.error-message{
-  color: red;
-}
-.footer{
-  display: flex;
-  margin-top: auto;
-  height: 100px;
+  padding: 30px;
+  margin-top:auto;
 }
 
+
+
+  

@@ -3,6 +3,8 @@ import { auth } from '../../firebase.js';
 import centerImage from '../../assets/2nd.png';
 import centerImage2 from '../../assets/Gen Xgenx.png';
 import './Login.css';
+import InputControl from "../InputControl/InputControl";
+
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -23,40 +25,49 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="page">
-      <header className="header"></header>
+    
+ <div className="login-page">
+ <header className="header"></header>
 
-      <div className="image-container">
-        <div className="image-container-2">
-          <div className="column-2-wrapper-1">
-            <img src={centerImage} alt="Centered Image" className="center-image" />
-          </div>
-          <div className="column-2-wrapper-2">
-            <div className="column-2">
-              <center>
-                <div style={{ marginTop: '20px' }}>
-                  <img src={centerImage2} alt="Centered2 Image" style={{ width: '151px', height: 'auto' }} />
-                </div>
-                <form onSubmit={handleLogin}>
-                  <p className="input-label">User Name</p>
-                  <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} required className="input-line" /><br /><br />
-                  <p className="input-label">Password</p>
-                  <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required className="input-line" /><br /><br />
-                  <button type="submit" className="login-button">Login</button>
-                  <p className="forgot-password"><u>Forget Password</u></p>
-                  {errorMessage && <p className="error-message">{errorMessage}</p>}
-                </form>
-              </center>
-            </div>
-          </div>
-        </div>
-      </div>
+ <div className="container">
+   <div>
+   <img src={centerImage} className="loginimage" alt="Logo" />
+   </div>
 
-      <footer className="footer">
-        <p className="footer-text-1 spaced-text">GENERATOR X INDUSTRIES</p>
-        <p className="footer-text-2">Copyright © 2023 All rights reserved by AD Printers</p>
-      </footer>
-    </div>
+       <div className="innerBox">
+       <h1 className="heading">Login</h1>
+       <InputControl
+          label="Email"
+          value={email} onChange={(e) => setEmail(e.target.value)} required
+          placeholder="Enter email address"
+        />
+        <InputControl
+          label="Password"
+          value={password} onChange={(e) => setPassword(e.target.value)} required
+
+          placeholder="Enter Password"
+        />
+   <form onSubmit={handleLogin}>
+      <button type="submit" className="login-button">Login</button>
+      <p className="forgot-password"><u>Forget Password</u></p>
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
+   </form>    
+   </div>
+ </div>
+
+ <footer className="footer_">
+ <p className="footerTextStyle1">
+   GENERATOR X INDUSTRIES 
+ </p>
+ <p className="footerTextStyle2">
+   Copyright © 2023 All rights reserved by AD Printers
+ </p>      
+ </footer>
+</div>
+
+
+
+
   );
 };
 

@@ -52,10 +52,17 @@ const LoginForm = () => {
         </div>
       </div>
 
-      <footer className="footer">
-        <p className="footer-text-1 spaced-text">GENERATOR X INDUSTRIES</p>
-        <p className="footer-text-2">Copyright © 2023 All rights reserved by AD Printers</p>
+      <div className='footer-div'>
+      <footer className='footer'>
+        <p1 className='footer-content'>
+          G E N E R A T O R X I N D U S T R I E S
+        </p1>
+        <br/>
+        <p2 className='footer-bottom-text'>
+          Copyright © 2023 All rights reserved by Gen X
+        </p2>
       </footer>
+      </div>
     </div>
   );
 };

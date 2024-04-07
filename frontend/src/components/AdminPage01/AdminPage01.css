@@ -70,3 +70,27 @@
   display: flex;
   justify-content: center;
 }
+
+
+
+.footer_ {
+  background-color: rgba(6, 43, 99, 1);;
+  color: #fff;
+  padding: 2px;
+  text-align: center;
+  width: 100%; 
+  align-items: center;
+}
+
+
+.footerTextStyle1 {
+  letter-spacing: 25px;
+  font-size: 25px;
+  text-align: center;
+
+}
+
+.footerTextStyle2 {
+  font-size: 30px;
+  text-align: center;
+}

@@ -45,9 +45,13 @@ const LogoutLink = () => {
           </div>
         </div>
       </div>
-      <footer className="footer">
-        <p className="spaced-text footer-text-1">GENERATOR X INDUSTRIES</p>
-        <p className="footer-text-2">Copyright © 2023 All rights reserved by AD Printers</p>
+      <footer className="footer_">
+      <p className="footerTextStyle1">
+        GENERATOR X INDUSTRIES 
+      </p>
+      <p className="footerTextStyle2">
+        Copyright © 2023 All rights reserved by AD Printers
+      </p>      
       </footer>
     </div>
   );

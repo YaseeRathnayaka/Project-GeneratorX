@@ -19,12 +19,15 @@ body {
   height: 80px;
   background-color: #062B63;
   margin-top: 100px;
+  margin-top: auto;
+  align-items: center;
 }
 
 .footer-content {
   letter-spacing: 20px;
   color: white;
   text-align: center;
+  align-items: center;
 }
 
 .footer-bottom-text {
@@ -34,18 +37,73 @@ body {
 }
 
 .logo {
+  margin-top: 3%;
   width: 75px;
+  padding-left: 20px;
 }
 
-.Download-button {
-  size: 10% !important;
+.download-button {
   padding-top: 10px;
+  margin-top: 490px;
   position: absolute;
   top: 10px;
-  right: 10px; /* Adjust these values for positioning */
+  right: 5%; /* Adjust these values for positioning */
   z-index: 1000; /* Set a high z-index to make sure it's above other elements */
+  height: 5vw;
+  width: 20vw;
+  border-radius: 10px;
+  align-content: center;
+  background-color: #50688F;
+  color: white;
+  border: none;
+  font-weight: bold;
 }
 
+.download-button:hover {
+  background-color: #062B63;
+}
+
+.switchoffbutton {
+  padding-top: 10px;
+  margin-top: 490px;
+  position: absolute;
+  top: 10px;
+  right: 40%; /* Adjust these values for positioning */
+  z-index: 1000; /* Set a high z-index to make sure it's above other elements */
+  height: 5vw;
+  width: 20vw;
+  border-radius: 10px;
+  align-content: center;
+  background-color: #50688F;
+  color: white;
+  border: none;
+  font-weight: bold;
+}
+
+.switchoffbutton:hover{
+  background-color: #062B63;
+}
+
+.servicepage{
+  padding-top: 10px;
+  margin-top: 490px;
+  position: absolute;
+  top: 10px;
+  left: 5%; /* Adjust these values for positioning */
+  z-index: 1000; /* Set a high z-index to make sure it's above other elements */
+  height: 5vw;
+  width: 20vw;
+  border-radius: 10px;
+  align-content: center;
+  background-color: #50688F;
+  color: white;
+  border: none;
+  font-weight: bold;
+}
+
+.servicepage:hover{
+  background-color: #062B63;
+}
 .dashboard-container {
   display: flex;
   flex-direction: column;
@@ -66,18 +124,16 @@ body {
   /* Add margin between gauges */
 }
 
-.download-button {
-  height: 20vh;
-  width: 20vw;
-}
-
 .gauge h2 {
   margin-bottom: 10px; /* Add margin below gauge title */
 }
 
 .footer-div {
   display: flex;
+  align-items: center;
+  margin-top: 50px;
   position: fixed;
-  margin-top: 300px;
+  bottom:0;
+  width: 100%;
   
 }

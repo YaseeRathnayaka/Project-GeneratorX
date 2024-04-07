@@ -161,10 +161,10 @@ const Dashboard = () => {
       <button onClick={handleDownload} className='download-button'>
           Report
         </button>
-        <button onClick={handleSwitchToggle}>
+        <button onClick={handleSwitchToggle} className='switchoffbutton'> 
           {switchStatus ? 'Switch ON' : 'Switch OFF'}
         </button>
-        <button onClick={NavigateToService}>
+        <button onClick={NavigateToService} className='servicepage'>
           service page</button>
       </div>
       <div className='footer-div'>

@@ -172,7 +172,7 @@ const Dashboard = () => {
         <p1 className='footer-content'>
           G E N E R A T O R X I N D U S T R I E S
         </p1>
-        <br />
+        <br/>
         <p2 className='footer-bottom-text'>
           Copyright © 2023 All rights reserved by Gen X
         </p2>

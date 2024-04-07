@@ -19,12 +19,14 @@ body {
   height: 80px;
   background-color: #062B63;
   margin-top: auto;
+  align-items: center;
 }
 
 .footer-content {
   letter-spacing: 20px;
   color: white;
   text-align: center;
+  align-items: center;
 }
 
 .footer-bottom-text {
@@ -37,7 +39,7 @@ body {
   width: 75px;
 }
 
-.Download-button {
+.download-button {
   size: 10% !important;
   padding-top: 10px;
   position: absolute;
@@ -49,6 +51,7 @@ body {
 .dashboard-container {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
 .meter-set {
@@ -68,6 +71,12 @@ body {
 .download-button {
   height: 20vh;
   width: 20vw;
+  border-radius: 10px;
+  align-content: center;
+  background-color: #50688F;
+  color: white;
+  border: none;
+  font-weight: bold;
 }
 
 .gauge h2 {
@@ -76,5 +85,9 @@ body {
 
 .footer-div {
   display: flex;
+  align-items: justify;
   margin-top: 50px;
+  position: fixed;
+  bottom:0;
+  width: 100%;
 }

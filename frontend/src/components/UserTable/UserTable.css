@@ -119,3 +119,76 @@ body {
 .modal-footer button:hover {
     background-color: #2980b9;
 }
+
+
+.loading-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .header {
+    background-color: rgba(6, 43, 99, 1);;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    width: 100%; 
+  }
+  
+  .content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+  .image {
+    width: 250px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    margin-top: 50px;  
+  }
+  .footer_ {
+    background-color: rgba(6, 43, 99, 1);;
+    color: #fff;
+    padding: 2px;
+    text-align: center;
+    width: 100%; 
+    align-items: center;
+  }
+  
+  
+  .footerTextStyle1 {
+    letter-spacing: 25px;
+    font-size: 25px;
+    text-align: center;
+  
+  }
+  
+  .footerTextStyle2 {
+    font-size: 30px;
+    text-align: center;
+  }
+
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  /* Table styles */
+  .table-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .table {
+    flex: 1 1 50%; /* Set each table to take up 50% of the available width */
+    margin-right: 1rem; /* Add spacing between the tables */
+  }
+
+
+  .formdiv{
+    background-color: #000;
+    margin-top: 500px;
+  }

@@ -8,7 +8,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  
 }.footer-text-1 {
   font-size: 30px;
   text-align: center;
@@ -36,7 +36,7 @@
   margin: 0 120px;
   padding: 20px;
   box-sizing: border-box;
-  height: 480px;
+  height: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;

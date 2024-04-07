@@ -92,7 +92,11 @@ const UserTable = () => {
   };
 
   return (
-    <div>
+    <div className="loading-page">
+    <header className="header"></header>
+
+    <div className="content">
+      <div className='formdiv'>
       <Form onSubmit={handleAddUser} inline>
         <FormGroup className="mb-2 mr-sm-2">
           <FormLabel className="mr-sm-2">Email</FormLabel>
@@ -113,7 +117,7 @@ const UserTable = () => {
           />
         </FormGroup>
         <Button type="submit" className="mb-2">Add User</Button>
-      </Form>
+      </Form></div>
 
       <Table striped bordered hover>
         <thead>
@@ -144,6 +148,16 @@ const UserTable = () => {
           ))}
         </tbody>
       </Table>
+    </div>
+    <footer className="footer_">
+      <p className="footerTextStyle1">
+        GENERATOR X INDUSTRIES 
+      </p>
+      <p className="footerTextStyle2">
+        Copyright © 2023 All rights reserved by AD Printers
+      </p>      
+      </footer>
+    
     </div>
   );
 };

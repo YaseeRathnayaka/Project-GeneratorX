@@ -151,12 +151,17 @@ const AdminPage3 = () => {
         </div>
       )}
 
-      <footer className="footer">
-        <p className="spacedTextStyle footerTextStyle1">GENERATOR X INDUSTRIES</p>
-        <p className="footerTextStyle2">
-          Copyright © 2023 All rights reserved by AD Printers
-        </p>
+<div className='footer-div'>
+      <footer className='footer'>
+        <p1 className='footer-content'>
+          G E N E R A T O R X I N D U S T R I E S
+        </p1>
+        <br/>
+        <p2 className='footer-bottom-text'>
+          Copyright © 2023 All rights reserved by Gen X
+        </p2>
       </footer>
+      </div>
     </div>
   );
 };

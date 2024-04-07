@@ -27,7 +27,7 @@ const LoginForm = () => {
   return (
     
  <div className="login-page">
- <header className="header"></header>
+ <header className="header_"></header>
 
  <div className="container">
    <div>
@@ -55,12 +55,14 @@ const LoginForm = () => {
    </div>
  </div>
 
- <footer className="footer_">
- <p className="footerTextStyle1">
-   GENERATOR X INDUSTRIES 
- </p>
-      
- </footer>
+ <footer className="footer__">
+ <p className="footerTextStyle1_">
+        GENERATOR X INDUSTRIES 
+      </p>
+      <p className="footerTextStyle2_">
+        Copyright © 2023 All rights reserved by AD Printers
+      </p>      
+      </footer>
 </div>
 
 

@@ -7,10 +7,6 @@ import ServicePage from './components/ServicePage/ServicePage';
 import LoadingPage from './components/LoadingPage/LoadingPage';
 import AdminPage1 from './components/AdminPage01/AdminPage01.js';
 import AdminPage2 from './components/AdminPage02/AdminPage02.js';
-import AdminPage3 from './components/AdminPage03/AdminPage03.js';
-import OperatorPage1 from './components/OperatorPage01/OperatorPage01.js';
-import OperatorPage2 from './components/OperatorPage02/OperatorPage02.js';
-import OperatorPage3 from './components/OperatorPage03/OperatorPage03.js';
 import UserTable from './components/UserTable/UserTable.js';
 
 const App = () => {
@@ -23,10 +19,6 @@ const App = () => {
           <Route path="/service" element={<ServicePage />} /> 
           <Route path="/adminpage1" element={<AdminPage1 />} />
           <Route path="/adminpage2" element={<AdminPage2 />} />
-          <Route path="/adminpage3" element={<AdminPage3 />} />
-          <Route path="/operatorpage1" element={<OperatorPage1 />} />
-          <Route path="/operatorpage2" element={<OperatorPage2 />} />
-          <Route path="/operatorpage3" element={<OperatorPage3 />} />
           <Route path="/usertable" element={<UserTable />} />
       </Routes>
     </Router>

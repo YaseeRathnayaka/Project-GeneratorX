@@ -59,9 +59,7 @@ const LoginForm = () => {
  <p className="footerTextStyle1">
    GENERATOR X INDUSTRIES 
  </p>
- <p className="footerTextStyle2">
-   Copyright © 2023 All rights reserved by AD Printers
- </p>      
+      
  </footer>
 </div>
 

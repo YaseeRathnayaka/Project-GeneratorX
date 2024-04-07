@@ -4,10 +4,12 @@
   min-height: 100vh;
 }
 
-.header {
-  background-color: #008B8B;
-  padding: 50px;
+.header_ {
+  background-color: rgb(190, 92, 12);;
+  color: #fff;
+  padding: 20px;
   text-align: center;
+  width: 100%; 
 }
 
 
@@ -16,7 +18,7 @@
     height: 400px;;
     min-height: 70vh;
     width: 1300px;
-    background: #fff;
+   
     display: flex;
     justify-content: center;
     align-items: center;

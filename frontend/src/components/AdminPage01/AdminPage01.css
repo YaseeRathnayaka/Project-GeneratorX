@@ -2,7 +2,6 @@
   background: white;
 }.spaced-text {
   letter-spacing: 25px;
-
 }.image-container {
   margin: auto;
   display: flex;
@@ -70,7 +69,10 @@
 .Column2WrapperRow {
   display: flex;
   justify-content: center;
+  height: auto;
 }
+
+
 
 .footer_ {
   background-color: rgba(6, 43, 99, 1);;

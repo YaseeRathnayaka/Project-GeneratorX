@@ -10,8 +10,8 @@ body {
 }
 
 .header {
-  height: 5px;
   background-color: #062B63;
+  padding: 10px;
 }
 
 .footer {

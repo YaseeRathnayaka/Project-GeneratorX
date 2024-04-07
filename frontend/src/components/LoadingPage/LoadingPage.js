@@ -16,17 +16,17 @@ const LoadingPage = () => {
 
   return (
     <div className="loading-page">
-      <header className="header"></header>
+      <header className="header_"></header>
 
       <div className="content">
         <img src={img} className="image" alt="Logo" />
       </div>
 
-      <footer className="footer_">
-      <p className="footerTextStyle1">
+      <footer className="footer__">
+      <p className="footerTextStyle1_">
         GENERATOR X INDUSTRIES 
       </p>
-      <p className="footerTextStyle2">
+      <p className="footerTextStyle2_">
         Copyright © 2023 All rights reserved by AD Printers
       </p>      
       </footer>

@@ -188,7 +188,57 @@ body {
   }
 
 
-  .formdiv{
-    background-color: #000;
-    margin-top: 500px;
+  .formdiv {
+    margin-top: 00px;
+    margin-left: 1000px;
+    width: 300px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: 300px;
+    z-index: 1000;
+  }
+  
+  .formdiv h2 {
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .formdiv input[type="text"],
+  .formdiv input[type="email"],
+  .formdiv textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .formdiv textarea {
+    height: 100px;
+  }
+  
+  .formdiv button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 150px;
+    
+  }
+  
+  .formdiv button:hover {
+    background-color: #0056b3;
+  }
+  
+
+  .table1{
+    margin-left: -20px;
   }

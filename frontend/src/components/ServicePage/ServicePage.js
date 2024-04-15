@@ -1,10 +1,9 @@
-// ServicePage.jsx
-
 import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import moment from 'moment';
 import './ServicePage.css';
+import Footer from '../Footer/Footer';
 
 const ServicePage = () => {
   const [reminders, setReminders] = useState(
@@ -73,75 +72,78 @@ const ServicePage = () => {
   };
 
   return (
-    <div className="service-page">
-      <div className='header'>
-      <header className="header"></header>
-      </div>
-      <h1>Service Page</h1>
-      <div className='column'>
-      <div className="reminder-input">
-        <input
-          type="text"
-          placeholder="Enter reminder text"
-          value={newReminder.text}
-          onChange={(e) => setNewReminder({ ...newReminder, text: e.target.value })}
-        />
-        <DatePicker
-          selected={newReminder.dueDate}
-          onChange={(date) => setNewReminder({ ...newReminder, dueDate: date })}
-          showTimeSelect
-          timeFormat="HH:mm"
-          timeIntervals={15}
-          timeCaption="time"
-          dateFormat="MMMM d, yyyy h:mm aa"
-          placeholderText="Select due date and time"
-        />
-        <div>
-          <label>Days:</label>
-          <input
-            type="number"
-            value={newReminder.days}
-            onChange={(e) => setNewReminder({ ...newReminder, days: parseInt(e.target.value) })}
-          />
-          <label>Hours:</label>
-          <input
-            type="number"
-            value={newReminder.hours}
-            onChange={(e) => setNewReminder({ ...newReminder, hours: parseInt(e.target.value) })}
-          />
-          <label>Minutes:</label>
-          <input
-            type="number"
-            value={newReminder.minutes}
-            onChange={(e) => setNewReminder({ ...newReminder, minutes: parseInt(e.target.value) })}
-          />
+    <div>
+      <header className='header'>
+        <h1 className='headertitle'>Service Page</h1>
+      </header>
+      <div className="service-page">
+        <div className='column'>
+          <div className="reminder-input">
+            <input
+              type="text"
+              placeholder="Enter reminder text"
+              value={newReminder.text}
+              onChange={(e) => setNewReminder({ ...newReminder, text: e.target.value })}
+            />
+            <DatePicker
+              selected={newReminder.dueDate}
+              onChange={(date) => setNewReminder({ ...newReminder, dueDate: date })}
+              showTimeSelect
+              timeFormat="HH:mm"
+              timeIntervals={15}
+              timeCaption="time"
+              dateFormat="MMMM d, yyyy h:mm aa"
+              placeholderText="Select due date and time"
+            />
+            <div>
+              <label>Days:</label>
+              <input
+                type="number"
+                value={newReminder.days}
+                onChange={(e) => setNewReminder({ ...newReminder, days: parseInt(e.target.value) })}
+              />
+              <label>Hours:</label>
+              <input
+                type="number"
+                value={newReminder.hours}
+                onChange={(e) => setNewReminder({ ...newReminder, hours: parseInt(e.target.value) })}
+              />
+              <label>Minutes:</label>
+              <input
+                type="number"
+                value={newReminder.minutes}
+                onChange={(e) => setNewReminder({ ...newReminder, minutes: parseInt(e.target.value) })}
+              />
+            </div>
+            <button onClick={addReminder} className='reminderbutton'>Add Reminder</button>
+          </div>
+          <div className="reminders-list">
+            <h2>Reminders</h2>
+            <ul>
+              {reminders.map((reminder, index) => (
+                <li key={index}>
+                  {reminder.text} - Due: {moment(reminder.dueDate).format('MMMM D, YYYY h:mm A')}
+                  <button onClick={() => deleteReminder(index)}>Delete</button>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="notifications-list">
+            <h2>Notifications</h2>
+            <ul>
+              {notifications.map((notification, index) => (
+                <li key={index}>
+                  {notification}
+                  <button onClick={() => deleteNotification(index)}>Delete</button>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-        <button onClick={addReminder}>Add Reminder</button>
       </div>
-      <div className="reminders-list">
-        <h2>Reminders</h2>
-        <ul>
-          {reminders.map((reminder, index) => (
-            <li key={index}>
-              {reminder.text} - Due: {moment(reminder.dueDate).format('MMMM D, YYYY h:mm A')}
-              <button onClick={() => deleteReminder(index)}>Delete</button>
-            </li>
-          ))}
-        </ul>
+      <div>
+        <Footer />
       </div>
-      <div className="notifications-list">
-        <h2>Notifications</h2>
-        <ul>
-          {notifications.map((notification, index) => (
-            <li key={index}>
-              {notification}
-              <button onClick={() => deleteNotification(index)}>Delete</button>
-            </li>
-          ))}
-        </ul>
-      </div>
-      </div>
-      <footer className='footer'></footer>
     </div>
   );
 };

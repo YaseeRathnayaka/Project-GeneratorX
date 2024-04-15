@@ -26,24 +26,3 @@
   align-items: center;
   margin-top: 50px;  
 }
-.footer__ {
-  background-color: rgba(6, 43, 99, 1);;
-  color: #fff;
-  padding: 0px;
-  text-align: center;
-  width: 100%; 
-  align-items: center;
-}
-
-
-.footerTextStyle1_ {
-  letter-spacing: 25px;
-  font-size: 25px;
-  text-align: center;
-
-}
-
-.footerTextStyle2_ {
-  font-size: 10px;
-  text-align: center;
-}

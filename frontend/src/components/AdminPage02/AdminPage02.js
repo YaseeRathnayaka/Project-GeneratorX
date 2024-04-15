@@ -6,6 +6,7 @@ import '../../HomePage.css';
 import './AdminPage02.css';
 import gen_X from '../../assets/Gen Xgenx.png';
 import icon from '../../assets/icons8-user-100 1.png';
+import Footer from '../Footer/Footer.js';
 
 const AdminPage2 = () => {
   const [formData, setFormData] = useState({});
@@ -147,10 +148,9 @@ const AdminPage2 = () => {
         </div>
       )}
 
-      <footer className="footer">
-        <p className="spacedTextStyle footerTextStyle1">GENERATOR X INDUSTRIES</p>
-        <p className="footerTextStyle2">Copyright © 2023 All rights reserved by AD Printers</p>
-      </footer>
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 };

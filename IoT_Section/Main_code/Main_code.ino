@@ -5,8 +5,8 @@
 #include <Adafruit_Sensor.h>
 #include <DHT.h>
 
-#define WIFI_SSID "Galaxy M02d75c"
-#define WIFI_PASSWORD "0000001@"
+#define WIFI_SSID "Dialog 4G 468"
+#define WIFI_PASSWORD "7A40ECe1"
 #define API_KEY "AIzaSyCjLiE1yQU-L860nsmFXKe3LJVohw1T7ec"
 #define USER_EMAIL "yasiiirathnayaka@gmail.com"
 #define USER_PASSWORD "123456"

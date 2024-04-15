@@ -1,8 +1,12 @@
-.footer {
-  position: absolute;
-  margin-top: 319px;
-  height: 50px;
-  
+
+.header-div {
+  height: 5px;
+  background-color: #062B63;
+  width:ma;
+}
+
+.headertitle{
+  margin-top: 10%;
 }
 /* ServicePage.css */
 
@@ -12,6 +16,10 @@
   margin: 0 auto;
   padding: 20px;
   font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 
@@ -75,6 +83,19 @@
 .reminders-list li button:hover,
 .notifications-list li button:hover {
   background-color: #c82333;
+}
+
+.reminderbutton {
+  border-radius: 10px;
+  align-content: center;
+  background-color: #50688F;
+  color: white;
+  border: none;
+  font-weight: bold;
+}
+
+.reminderbutton:hover{
+  background-color: #062B63;
 }
 
 

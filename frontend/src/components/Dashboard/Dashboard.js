@@ -6,6 +6,10 @@ import img from '../../../src/assets/Gen Xgenx.png';
 import * as XLSX from 'xlsx';
 import ApexChart from './ApexChart';
 import { useNavigate } from 'react-router';
+import Footer from '../Footer/Footer';
+
+
+
 
 const Dashboard = () => {
   const [sensorData, setSensorData] = useState({
@@ -167,17 +171,7 @@ const Dashboard = () => {
         <button onClick={NavigateToService} className='servicepage'>
           service page</button>
       </div>
-      <div className='footer-div'>
-      <footer className='footer'>
-        <p1 className='footer-content'>
-          G E N E R A T O R X I N D U S T R I E S
-        </p1>
-        <br />
-        <p2 className='footer-bottom-text'>
-          Copyright © 2023 All rights reserved by Gen X
-        </p2>
-      </footer>
-      </div>
+      <Footer />
     </div>
   );
 };

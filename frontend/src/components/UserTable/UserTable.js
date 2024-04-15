@@ -5,6 +5,7 @@ import { Table, Button, Form, FormGroup, FormControl, FormLabel } from 'react-bo
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import './UserTable.css';
+import Footer from '../Footer/Footer';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCjLiE1yQU-L860nsmFXKe3LJVohw1T7ec",
@@ -92,6 +93,7 @@ const UserTable = () => {
   };
 
   return (
+    <div>
     <div className="loading-page">
     <header className="header"></header>
 
@@ -119,7 +121,9 @@ const UserTable = () => {
         <Button type="submit" className="mb-2">Add User</Button>
       </Form></div>
 
-      <Table striped bordered hover>
+      <div className='table1'>
+
+      <Table striped bordered hover className='table1'>
         <thead>
           <tr>
             <th>User ID</th>
@@ -148,16 +152,12 @@ const UserTable = () => {
           ))}
         </tbody>
       </Table>
+      </div>
     </div>
-    <footer className="footer_">
-      <p className="footerTextStyle1">
-        GENERATOR X INDUSTRIES 
-      </p>
-      <p className="footerTextStyle2">
-        Copyright © 2023 All rights reserved by AD Printers
-      </p>      
-      </footer>
-    
+    </div>
+    <div>
+      <Footer />
+    </div>
     </div>
   );
 };

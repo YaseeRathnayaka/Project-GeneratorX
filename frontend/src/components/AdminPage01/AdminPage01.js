@@ -5,6 +5,7 @@ import icon from '../../assets/icons8-user-100 1.png';
 import { auth } from '../../firebase.js';
 import admin from '../../assets/Admin.png';
 import './AdminPage01.css';
+import Footer from '../Footer/Footer.js';
 
 const LogoutLink = () => {
   const handleLogout = async () => {
@@ -45,14 +46,9 @@ const LogoutLink = () => {
           </div>
         </div>
       </div>
-      <footer className="footer_">
-      <p className="footerTextStyle1">
-        GENERATOR X INDUSTRIES 
-      </p>
-      <p className="footerTextStyle2_">
-        Copyright © 2023 All rights reserved by AD Printers
-      </p>      
-      </footer>
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 };

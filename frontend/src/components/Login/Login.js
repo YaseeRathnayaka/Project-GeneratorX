@@ -4,6 +4,7 @@ import centerImage from '../../assets/2nd.png';
 import centerImage2 from '../../assets/Gen Xgenx.png';
 import './Login.css';
 import InputControl from "../InputControl/InputControl";
+import Footer from '../Footer/Footer.js';
 
 
 const LoginForm = () => {
@@ -56,13 +57,12 @@ const LoginForm = () => {
  </div>
 
  <footer className="footer__">
- <p className="footerTextStyle1_">
-        GENERATOR X INDUSTRIES 
-      </p>
-      <p className="footerTextStyle2_">
-        Copyright © 2023 All rights reserved by AD Printers
-      </p>      
+ 
       </footer>
+
+      
+        <Footer />
+    
 </div>
 
 
